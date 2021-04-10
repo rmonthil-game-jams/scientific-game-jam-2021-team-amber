@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://game/assets/biome_neutral/meshs/TreeLarge.tres" type="ArrayMesh" id=1]
+
+
+[node name="TreeLarge" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 95.6452, -7.42091, 28.2299, 28.1543, 48.9762, -82.5146, -7.70257, 86.8692, 48.9327, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = null
+material/1 = null
+material/2 = null

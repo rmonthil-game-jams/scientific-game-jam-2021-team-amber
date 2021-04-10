@@ -1,9 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://modules/simulation/SimulationVisualCell.gd" type="Script" id=1]
-[ext_resource path="res://game/assets/biome_neutre/scenes/Ground.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/assets/biome_neutral/scenes/Ground.tscn" type="PackedScene" id=3]
 
-[sub_resource type="BoxShape" id=7]
+[sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.5, 0.5, 0.5 )
 
 [node name="SimulationVisualCell" type="Spatial"]
@@ -19,8 +19,18 @@ monitoring = false
 collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
-shape = SubResource( 7 )
+shape = SubResource( 1 )
 
 [node name="TweenTrees" type="Tween" parent="."]
 
 [node name="TweenLand" type="Tween" parent="."]
+
+[node name="TimerClearTrees" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="TimerClearLand" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+[connection signal="timeout" from="TimerClearTrees" to="." method="_on_TimerClearTrees_timeout"]
+[connection signal="timeout" from="TimerClearLand" to="." method="_on_TimerClearLand_timeout"]

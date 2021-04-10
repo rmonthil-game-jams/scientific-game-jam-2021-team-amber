@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://game/assets/biome_desert/meshs/Acacia.tres" type="ArrayMesh" id=1]
+[ext_resource path="res://game/assets/biome_desert/scenes/acacia1.tres" type="Material" id=2]
+
+[node name="Acacia" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 100, 0, 0, 0, -1.62921e-05, 100, 0, -100, -1.62921e-05, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = null
+material/1 = ExtResource( 2 )

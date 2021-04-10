@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ambiance.ogg-af75c91e45859b37a3fbb3b80a023c42.oggstr"
+
+[deps]
+
+source_file="res://game/assets/sounds/ambiance/ambiance.ogg"
+dest_files=[ "res://.import/ambiance.ogg-af75c91e45859b37a3fbb3b80a023c42.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

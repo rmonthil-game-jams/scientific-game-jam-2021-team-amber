@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://modules/simulation/Simulation.gd" type="Script" id=1]
 [ext_resource path="res://modules/simulation/SimulationCore.tscn" type="PackedScene" id=2]
 [ext_resource path="res://modules/simulation/SimulationVisual.tscn" type="PackedScene" id=3]
 [ext_resource path="res://modules/simulation/SimulationVisualUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/assets/sounds/feedback/create_rock.ogg" type="AudioStream" id=5]
+[ext_resource path="res://game/assets/sounds/feedback/create_water.ogg" type="AudioStream" id=6]
+[ext_resource path="res://modules/time_correlated_sound/TimeCorrelatedSound.tscn" type="PackedScene" id=7]
 
 [node name="Simulation" type="Spatial"]
 script = ExtResource( 1 )
@@ -21,5 +24,11 @@ margin_left = 139.0
 margin_top = 407.0
 margin_right = 139.0
 margin_bottom = 407.0
-[connection signal="step" from="SimulationCore" to="SimulationVisualUI" method="_on_SimulationCore_step"]
+
+[node name="CreateRock" parent="." instance=ExtResource( 7 )]
+stream = ExtResource( 5 )
+
+[node name="CreateWater" parent="." instance=ExtResource( 7 )]
+stream = ExtResource( 6 )
 [connection signal="step" from="SimulationCore" to="SimulationVisual" method="_on_SimulationCore_step"]
+[connection signal="step" from="SimulationCore" to="SimulationVisualUI" method="_on_SimulationCore_step"]
