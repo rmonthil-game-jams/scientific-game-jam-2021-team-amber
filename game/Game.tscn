@@ -35,5 +35,5 @@ dialogs = {
 
 [node name="Achievements" parent="." instance=ExtResource( 7 )]
 WORLD_PATH = NodePath("../World")
-[connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]
 [connection signal="started" from="MainMenu" to="PhyloGeny" method="_on_MainMenu_started"]
+[connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]
