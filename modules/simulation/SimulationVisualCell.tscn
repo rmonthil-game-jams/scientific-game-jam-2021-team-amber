@@ -1,54 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://modules/simulation/SimulationVisualCell.gd" type="Script" id=1]
+[ext_resource path="res://game/assets/biome_neutre/scenes/Ground.tscn" type="PackedScene" id=3]
 
-[sub_resource type="SpatialMaterial" id=1]
-resource_local_to_scene = true
-albedo_color = Color( 0.247059, 0.709804, 0.133333, 1 )
-
-[sub_resource type="CubeMesh" id=2]
-resource_local_to_scene = true
-size = Vector3( 1, 1, 1 )
-
-[sub_resource type="SpatialMaterial" id=4]
-resource_local_to_scene = true
-
-[sub_resource type="CubeMesh" id=5]
-resource_local_to_scene = true
-size = Vector3( 0.75, 0.75, 0.75 )
-
-[sub_resource type="SpatialMaterial" id=7]
-resource_local_to_scene = true
-albedo_color = Color( 0.509804, 0.435294, 0.203922, 1 )
-
-[sub_resource type="CubeMesh" id=6]
-resource_local_to_scene = true
-size = Vector3( 0.25, 1, 0.25 )
-
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=7]
 extents = Vector3( 0.5, 0.5, 0.5 )
 
 [node name="SimulationVisualCell" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="Land" type="MeshInstance" parent="."]
-material_override = SubResource( 1 )
-mesh = SubResource( 2 )
-material/0 = null
+[node name="Ground" parent="." instance=ExtResource( 3 )]
 
-[node name="Tree" type="Spatial" parent="."]
-
-[node name="Folliage" type="MeshInstance" parent="Tree"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, 0 )
-material_override = SubResource( 4 )
-mesh = SubResource( 5 )
-material/0 = null
-
-[node name="Trunk" type="MeshInstance" parent="Tree"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-material_override = SubResource( 7 )
-mesh = SubResource( 6 )
-material/0 = null
+[node name="Trees" type="Spatial" parent="Ground"]
 
 [node name="Area" type="Area" parent="."]
 input_ray_pickable = false
@@ -56,4 +19,8 @@ monitoring = false
 collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
-shape = SubResource( 3 )
+shape = SubResource( 7 )
+
+[node name="TweenTrees" type="Tween" parent="."]
+
+[node name="TweenLand" type="Tween" parent="."]

@@ -2,8 +2,8 @@ extends Node
 
 signal step(state)
 
-const WIDTH : int = 20
-const HEIGHT : int = 20
+const WIDTH : int = 16
+const HEIGHT : int = 10
 
 const GLOBAL_PROBABILITY_OF_DEATH : float = 0.1
 const GLOBAL_PROBABILITY_OF_REPLICATION : float = 0.5

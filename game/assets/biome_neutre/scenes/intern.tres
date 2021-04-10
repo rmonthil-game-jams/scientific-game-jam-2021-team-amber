@@ -1,0 +1,6 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+resource_local_to_scene = true
+resource_name = "TreeBaseV"
+params_cull_mode = 2

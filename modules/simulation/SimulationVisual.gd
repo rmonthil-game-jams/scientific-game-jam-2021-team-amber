@@ -1,7 +1,5 @@
 extends Spatial
 
-signal cell_selected(i, j)
-
 const DX : float = 1.0
 
 var width : int = 0
