@@ -10,13 +10,15 @@ var state : Dictionary = {} setget _set_state
 func _set_state(val : Dictionary):
 	if val and is_inside_tree():
 		if val["type"] == "water":
-			$MeshInstance.hide()
+			$Land.hide()
+			$Tree.hide()
 		elif val["type"] == "land":
-			$MeshInstance.show()
-			$MeshInstance.material_override.albedo_color = Color.white
+			$Land.show()
+			$Tree.hide()
 		elif val["type"] == "tree":
-			$MeshInstance.show()
-			$MeshInstance.material_override.albedo_color = Color(val["species"].x, val["species"].y, val["species"].z)
+			$Land.show()
+			$Tree.show()
+			$Tree/Folliage.material_override.albedo_color = Color(val["species"].x, val["species"].y, val["species"].z)
 	state = val
 
 func _enter_tree():

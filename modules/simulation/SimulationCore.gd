@@ -2,10 +2,10 @@ extends Node
 
 signal step(state)
 
-const WIDTH : int = 14
-const HEIGHT : int = 14
+const WIDTH : int = 20
+const HEIGHT : int = 20
 
-const GLOBAL_PROBABILITY_OF_DEATH : float = 0.05
+const GLOBAL_PROBABILITY_OF_DEATH : float = 0.1
 const GLOBAL_PROBABILITY_OF_REPLICATION : float = 0.5
 const GLOBAL_PROBABILITY_OF_MUTATION : float = 0.1
 
@@ -34,6 +34,39 @@ func create_empty_state(width : int, height : int) -> Array:
 		for j in range(height):
 			matrix[i].append({"type":"tree", "species":Vector3(1.0, 1.0, 1.0).normalized(), "biome":"temperate"})
 	return matrix
+
+func get_diversity() -> float:
+	# average
+	var n_trees : int = 0
+	var average : Array = [0.0, 0.0, 0.0]
+	for i in range(WIDTH):
+		for j in range(HEIGHT):
+			if state[i][j]["type"] == "tree":
+				for k in range(3):
+					average[k] += state[i][j]["species"][k]
+				n_trees += 1
+	if n_trees > 0:
+		for k in range(3):
+			average[k] /= n_trees
+		# deviation
+		var variance : Array = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+		for i in range(WIDTH):
+			for j in range(HEIGHT):
+				if state[i][j]["type"] == "tree":
+					for ki in range(3):
+						for kj in range(3):
+							variance[ki + 3 * kj] += (state[i][j]["species"][ki] - average[ki]) * (state[i][j]["species"][kj] - average[kj])
+		var deviation : Array = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+		for k in range(9):
+			variance[k] = variance[k] / n_trees
+			deviation[k] = sqrt(abs(variance[k]))
+		# diversity
+		var diversity : float = 0.0
+		for k in range(0, 9):
+			diversity += deviation[k]
+		return diversity / 9
+	else:
+		return 0.0
 
 # process
 
