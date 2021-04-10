@@ -22,7 +22,7 @@ func generate_from_state(state : Array):
 			cells[i].append(preload("res://modules/simulation/SimulationVisualCell.tscn").instance())
 			$Cells.add_child(cells[i][j])
 			# set cell parameters
-			cells[i][j].translation = Vector3((i - width/2) * DX, 0.0, (j - height/2) + DX)
+			cells[i][j].translation = Vector3((i - width/2) * DX + DX/2, 0.0, (j - height/2) + DX)
 			cells[i][j].I = i
 			cells[i][j].J = j
 			# set state

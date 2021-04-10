@@ -122,13 +122,13 @@ func _spawn_tree(species : Vector3, biome : String):
 							foliage_material.albedo_color = Color(species.x, species.y, species.z)
 							new_tree.get_node("MeshInstance").set_surface_material(0, foliage_material)
 				"hot":
-					match (randi() % 2):
+					match (randi() % 100):
 						0:
 							new_tree = preload("res://game/assets/biome_desert/scenes/Acacia.tscn").instance()
 							var foliage_material : SpatialMaterial = preload("res://game/assets/colors.tres").duplicate()
 							foliage_material.albedo_color = Color(species.x, species.y, species.z)
 							new_tree.get_node("MeshInstance").set_surface_material(1, foliage_material)
-						1:
+						_:
 							new_tree = preload("res://game/assets/biome_desert/scenes/Cactus.tscn").instance()
 							var foliage_material : SpatialMaterial = preload("res://game/assets/colors_cactus.tres").duplicate()
 							foliage_material.albedo_color = Color(species.x, species.y, species.z)
@@ -136,8 +136,9 @@ func _spawn_tree(species : Vector3, biome : String):
 			current_ground.get_node("Trees").add_child(new_tree)
 			# translation
 			new_tree.translation += Vector3(rand_range(-0.3, 0.3), 0.0, rand_range(-0.3, 0.3))
-			new_tree.translation.y += 0.5
+			new_tree.translation.y += 0.25
 			new_tree.scale = Vector3(0.01, 0.01, 0.01)
+			new_tree.rotation.y = rand_range(0.0, 2.0 * PI)
 			$TweenTrees.interpolate_property(new_tree, "scale", Vector3(0.01, 0.01, 0.01), Vector3(1.0, 1.0, 1.0), 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT, 0.5)
 			$TweenTrees.start()
 

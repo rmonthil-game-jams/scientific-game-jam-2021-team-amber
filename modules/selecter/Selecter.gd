@@ -5,7 +5,7 @@ signal selected(i, j)
 
 var current : Spatial = null
 
-func _input(event : InputEvent):
+func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		var camera : Camera = get_viewport().get_camera()
 		look_at(camera.project_ray_origin(event.position) + camera.project_ray_normal(event.position), Vector3.UP)
