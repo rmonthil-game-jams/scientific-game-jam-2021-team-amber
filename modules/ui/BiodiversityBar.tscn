@@ -1,0 +1,109 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://modules/ui/BiodiversityBar.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.368627, 0.541176, 0.0627451, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id=2]
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="BiodiversityProgress" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+bonusPercentages = [ 12, 38, 49, 73 ]
+
+[node name="BioBar" type="ProgressBar" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = -121.0
+margin_right = 360.0
+margin_bottom = -89.0
+rect_rotation = -90.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+value = 80.67
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="BioBar"]
+
+[node name="Neutral" type="TextureRect" parent="BioBar/Tween"]
+modulate = Color( 1, 1, 1, 0.329412 )
+anchor_bottom = 1.0
+margin_left = 79.0
+margin_top = 428.0
+margin_right = 143.0
+margin_bottom = -108.0
+rect_pivot_offset = Vector2( 32, 32 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tropical" type="TextureRect" parent="BioBar/Tween"]
+modulate = Color( 1, 1, 1, 0.329412 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -433.0
+margin_top = 328.0
+margin_right = -369.0
+margin_bottom = 424.0
+rect_pivot_offset = Vector2( 32, 32 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hot" type="TextureRect" parent="BioBar/Tween"]
+modulate = Color( 1, 1, 1, 0.329412 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -433.0
+margin_top = 228.0
+margin_right = -369.0
+margin_bottom = 324.0
+rect_pivot_offset = Vector2( 32, 32 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cold" type="TextureRect" parent="BioBar/Tween"]
+modulate = Color( 1, 1, 1, 0.329412 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -433.0
+margin_top = 128.0
+margin_right = -369.0
+margin_bottom = 192.0
+rect_pivot_offset = Vector2( 32, 32 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="BioBar/Tween/Neutral" to="." method="_on_Bonus1_mouse_entered"]
+[connection signal="mouse_exited" from="BioBar/Tween/Neutral" to="." method="_on_Bonus1_mouse_exited"]
+[connection signal="mouse_entered" from="BioBar/Tween/Tropical" to="." method="_on_Bonus2_mouse_entered"]
+[connection signal="mouse_exited" from="BioBar/Tween/Tropical" to="." method="_on_Bonus2_mouse_exited"]
+[connection signal="mouse_entered" from="BioBar/Tween/Hot" to="." method="_on_Bonus3_mouse_entered"]
+[connection signal="mouse_exited" from="BioBar/Tween/Hot" to="." method="_on_Bonus3_mouse_exited"]
+[connection signal="mouse_entered" from="BioBar/Tween/Cold" to="." method="_on_Bonus4_mouse_entered"]
+[connection signal="mouse_exited" from="BioBar/Tween/Cold" to="." method="_on_Bonus4_mouse_exited"]
