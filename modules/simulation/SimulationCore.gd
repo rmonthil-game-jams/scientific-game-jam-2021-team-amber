@@ -9,7 +9,7 @@ const GLOBAL_PROBABILITY_OF_DEATH : float = 0.1
 const GLOBAL_PROBABILITY_OF_REPLICATION : float = 0.5
 const GLOBAL_PROBABILITY_OF_MUTATION : float = 0.1
 
-const BIOME_SELECTIVITY_TEMPARATE : float = 4.0
+const BIOME_SELECTIVITY_TEMPARATE : float = 0.0
 const BIOME_SELECTIVITY_HOT : float = 2.0
 const BIOME_SELECTIVITY_COLD : float = 2.0
 
@@ -32,7 +32,7 @@ func create_empty_state(width : int, height : int) -> Array:
 	for i in range(width):
 		matrix.append([])  
 		for j in range(height):
-			matrix[i].append({"type":"tree", "species":Vector3(1.0, 1.0, 1.0).normalized(), "biome":"temperate"})
+			matrix[i].append({"type":"tree", "species":Vector3(0.7, 1.0, 0.4).normalized(), "biome":"temperate"})
 	return matrix
 
 func get_diversity() -> float:
@@ -100,19 +100,23 @@ func step():
 						probability_of_replication_east += 0.25 * get_cell_probability_of_replication(state[i+1][j])
 					# replace land with tree if replication
 					if random_number < probability_of_replication_south:
-						state[i][j] = state[i][j-1].duplicate()
+						state[i][j]["type"] = state[i][j-1]["type"]
+						state[i][j]["species"] = state[i][j-1]["species"]
 						if random_mutation_number < get_cell_probability_of_mutation(state[i][j]):
 							mutate(state[i][j])
 					elif random_number < probability_of_replication_north:
-						state[i][j] = state[i][j+1].duplicate()
+						state[i][j]["type"] = state[i][j+1]["type"]
+						state[i][j]["species"] = state[i][j+1]["species"]
 						if random_mutation_number < get_cell_probability_of_mutation(state[i][j]):
 							mutate(state[i][j])
 					elif random_number < probability_of_replication_west:
-						state[i][j] = state[i-1][j].duplicate()
+						state[i][j]["type"] = state[i-1][j]["type"]
+						state[i][j]["species"] = state[i-1][j]["species"]
 						if random_mutation_number < get_cell_probability_of_mutation(state[i][j]):
 							mutate(state[i][j])
 					elif random_number < probability_of_replication_east:
-						state[i][j] = state[i+1][j].duplicate()
+						state[i][j]["type"] = state[i+1][j]["type"]
+						state[i][j]["species"] = state[i+1][j]["species"]
 						if random_mutation_number < get_cell_probability_of_mutation(state[i][j]):
 							mutate(state[i][j])
 	# signal

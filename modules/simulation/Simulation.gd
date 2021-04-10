@@ -4,8 +4,9 @@ func prepaint(i : int, j : int, biome : String) -> void:
 	$SimulationVisual.cells[i][j].prepaint(biome)
 
 func paint(i : int, j : int, biome : String) -> void:
-	$SimulationCore.state[i][j]["biome"] = biome
-	$SimulationVisual.cells[i][j].state = $SimulationCore.state[i][j].duplicate()
+	if not $SimulationCore.state[i][j]["type"] == "water":
+		$SimulationCore.state[i][j]["biome"] = biome
+		$SimulationVisual.cells[i][j].state = $SimulationCore.state[i][j].duplicate()
 
 func preshovel(i, j) -> void:
 	$SimulationVisual.cells[i][j].preshovel()

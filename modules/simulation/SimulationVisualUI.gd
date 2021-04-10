@@ -26,9 +26,9 @@ func generate_from_state(state : Array):
 			cells[i][j].rect_position = Vector2((i - width/2) * DX, (j - height/2) * DX)
 			cells[i][j].get_node("Land").rect_position = -0.5 * Vector2(DX, DX)
 			cells[i][j].get_node("Land").rect_size = Vector2(DX, DX)
-			cells[i][j].get_node("Folliage").rect_position = -0.5 * Vector2(DX, DX)
-			cells[i][j].get_node("Folliage").rect_min_size = Vector2(DX, DX)
-			cells[i][j].get_node("Folliage").rect_size = Vector2(DX, DX)
+			cells[i][j].get_node("Folliage").rect_position = -0.5 * Vector2(0.8 * DX, 0.8 * DX)
+			cells[i][j].get_node("Folliage").rect_min_size = Vector2(0.8 * DX, 0.8 * DX)
+			cells[i][j].get_node("Folliage").rect_size = Vector2(0.8 * DX, 0.8 * DX)
 			cells[i][j].I = i
 			cells[i][j].J = j
 			# set state
