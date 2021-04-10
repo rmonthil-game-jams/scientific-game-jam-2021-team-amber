@@ -8,17 +8,22 @@
 [ext_resource path="res://modules/ui/CreditScene.tscn" type="PackedScene" id=6]
 [ext_resource path="res://modules/achievements/Achievements.tscn" type="PackedScene" id=7]
 
-[node name="Game" type="Node"]
+[node name="Game" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="World" parent="." instance=ExtResource( 2 )]
 
 [node name="MainMenu" parent="." instance=ExtResource( 3 )]
 
-[node name="BiodiversityProgress" parent="." instance=ExtResource( 4 )]
+[node name="CreditScene" parent="." instance=ExtResource( 6 )]
 visible = false
 
-[node name="CreditScene" parent="." instance=ExtResource( 6 )]
+[node name="BiodiversityProgress" parent="." instance=ExtResource( 4 )]
 visible = false
 
 [node name="PhyloGeny" parent="." instance=ExtResource( 5 )]
@@ -35,5 +40,6 @@ dialogs = {
 
 [node name="Achievements" parent="." instance=ExtResource( 7 )]
 WORLD_PATH = NodePath("../World")
-[connection signal="started" from="MainMenu" to="PhyloGeny" method="_on_MainMenu_started"]
 [connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]
+[connection signal="started" from="MainMenu" to="PhyloGeny" method="_on_MainMenu_started"]
+[connection signal="tool_selected" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_tool_selected"]

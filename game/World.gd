@@ -1,8 +1,6 @@
 extends Spatial
 
-signal win()
-signal loss()
-signal world_event(event_name)
+var current_tool : String = "shovel"
 
 # interface
 
@@ -16,7 +14,13 @@ func _process(delta : float):
 #	print($Simulation.get_diversity())
 
 func _on_Selecter_selected(i, j):
-	$Simulation.shovel(i, j)
+	match current_tool:
+		"shovel":
+			$Simulation.shovel(i, j)
+		"paint_hot":
+			$Simulation.paint(i, j, "hot")
+		"paint_cold":
+			$Simulation.paint(i, j, "cold")
 
 func _on_Selecter_preselected(i, j):
 	$Simulation.preshovel(i, j)

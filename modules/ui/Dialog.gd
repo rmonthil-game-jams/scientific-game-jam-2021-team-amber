@@ -1,6 +1,6 @@
 extends Control
 
-onready var Text = get_node("TextureRect/Polygon2D/Text")
+onready var Text = get_node("TextureRect/Text")
 
 export(Dictionary) var dialogs
 var isTalking :  bool = true
