@@ -30,5 +30,5 @@ stream = ExtResource( 5 )
 
 [node name="CreateWater" parent="." instance=ExtResource( 7 )]
 stream = ExtResource( 6 )
-[connection signal="step" from="SimulationCore" to="SimulationVisual" method="_on_SimulationCore_step"]
 [connection signal="step" from="SimulationCore" to="SimulationVisualUI" method="_on_SimulationCore_step"]
+[connection signal="step" from="SimulationCore" to="SimulationVisual" method="_on_SimulationCore_step"]
