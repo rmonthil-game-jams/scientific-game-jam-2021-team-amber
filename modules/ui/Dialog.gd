@@ -1,34 +1,55 @@
-extends Sprite
+extends Control
 
-onready var BubbleText = get_child(0)
-onready var Text = BubbleText.get_child(0)
+onready var Text = get_node("TextureRect/Polygon2D/Text")
 
-export(Array,String) var dialog = ["Hey ! My name is PhyloGenie", "This is the Pangaea, please help me this planet is dying..."]
-var isTalking :  bool = false
-
+export(Dictionary) var dialogs
+var isTalking :  bool = true
+var currentDialogNumber = -1
+var currentDialogState : String
+var totalStateNumber = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	BubbleText.visible = false
-#	Text.set_bbcode(dialog[page])
-#	Text.set_visible_characters(0)
+	visible = false
 
 func _input(event):
 	if event is InputEventMouseButton:
-		if event.is_pressed() && event.button_index == BUTTON_LEFT && not isTalking :
-			GenieSays("Hey ! My name is PhyloGenie")
-			
-		if Text.get_visible_characters() > Text.get_total_character_count():
-			BubbleText.visible = false
+		if event.is_pressed() && event.button_index == BUTTON_LEFT && isTalking :
+			pass
 
+func StartDialog(dialogue : String, number : int):
+	visible = true
+	currentDialogState = dialogue
+	totalStateNumber = number
+	currentDialogNumber = 1
+	Text.set_bbcode(dialogs[currentDialogState+ str(currentDialogNumber)])
+	Text.set_visible_characters(0)
+	currentDialogNumber += 1
+
+func NextDialogue():
+	print(currentDialogNumber)
+	Text.set_bbcode(dialogs[currentDialogState+ str(currentDialogNumber)])
+	Text.set_visible_characters(0)
+	currentDialogNumber += 1
 
 func _on_Timer_timeout():
 	Text.set_visible_characters(Text.get_visible_characters()+1)
 
-func GenieSays(var text):
-	BubbleText.visible = true
-	isTalking = true
-	Text.set_bbcode(text)
+func GenieSays(var text : String):
+	Text.set_bbcode(dialogs[text+ str(currentDialogNumber)])
 	Text.set_visible_characters(0)
 
-	
+func _on_MainMenu_started():
+	isTalking = false
+	print("testde fin")
+	StartDialog("intro", 6)
+
+
+func _on_TextureButton_pressed():
+	if Text.get_visible_characters() > Text.get_total_character_count():
+		if currentDialogNumber < totalStateNumber:
+			NextDialogue()
+		else:
+			visible = false
+	else :
+		Text.set_visible_characters(Text.get_total_character_count())

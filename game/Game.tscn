@@ -21,4 +21,15 @@ visible = false
 visible = false
 
 [node name="PhyloGeny" parent="." instance=ExtResource( 5 )]
+dialogs = {
+"intro1": "Hi there. And who are you …?",
+"intro2": "How did you even get there ?? Oh, never mind, nothing matters anymore. There are no trees left anyway.",
+"intro3": "Look at my planet ! It’s desertic, it’s awful ! Everything was going just fine for millions of years, and suddenly… *sobs*",
+"intro4": "Oh don’t worry, I’m just pretending to cry. It’s a trick I learned from humans. I’m a PhyloGenie, I can’t physically cry !",
+"intro5": "Well I guess I’ll have to try again from the beginning. Hey, since you’re here, don’t stay there just watching ! You might as well help me.",
+"intro6": "Okay, I went back in time to the moment when there was only one continent and a couple of species. Back then, the climate was tropical everywhere.",
+"intro7": "I’ll teach you some of my tricks for starters.",
+"intro8": "Look, I’ll lend you my shovel. With that, you can transform water in ground, or ground in water, by just clicking on it. You can also click and drag to draw oceans, islands and continents. Go on, try it !"
+}
+[connection signal="started" from="MainMenu" to="PhyloGeny" method="_on_MainMenu_started"]
 [connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]
