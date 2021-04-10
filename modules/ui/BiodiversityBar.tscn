@@ -25,6 +25,8 @@ __meta__ = {
 }
 bonusPercentages = [ 12, 38, 49, 73 ]
 
+[node name="Tween" type="Tween" parent="."]
+
 [node name="BioBar" type="ProgressBar" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -37,73 +39,83 @@ custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-value = 80.67
 percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="BioBar"]
-
-[node name="Neutral" type="TextureRect" parent="BioBar/Tween"]
-modulate = Color( 1, 1, 1, 0.329412 )
-anchor_bottom = 1.0
-margin_left = 79.0
-margin_top = 428.0
-margin_right = 143.0
-margin_bottom = -108.0
-rect_pivot_offset = Vector2( 32, 32 )
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Tropical" type="TextureRect" parent="BioBar/Tween"]
-modulate = Color( 1, 1, 1, 0.329412 )
+[node name="Neutral" type="TextureRect" parent="BioBar"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-margin_left = -433.0
-margin_top = 328.0
-margin_right = -369.0
-margin_bottom = 424.0
+anchor_bottom = 0.5
+margin_left = -195.879
+margin_top = 43.205
+margin_right = -131.879
+margin_bottom = 107.205
+rect_rotation = 90.0
 rect_pivot_offset = Vector2( 32, 32 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hot" type="TextureRect" parent="BioBar/Tween"]
-modulate = Color( 1, 1, 1, 0.329412 )
+[node name="Tropical" type="TextureRect" parent="BioBar"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-margin_left = -433.0
-margin_top = 228.0
-margin_right = -369.0
-margin_bottom = 324.0
+anchor_bottom = 0.5
+margin_left = -84.8985
+margin_top = 40.5102
+margin_right = -20.8985
+margin_bottom = 104.51
+rect_rotation = 90.0
 rect_pivot_offset = Vector2( 32, 32 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cold" type="TextureRect" parent="BioBar/Tween"]
-modulate = Color( 1, 1, 1, 0.329412 )
+[node name="Hot" type="TextureRect" parent="BioBar"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-margin_left = -433.0
-margin_top = 128.0
-margin_right = -369.0
-margin_bottom = 192.0
+anchor_bottom = 0.5
+margin_left = 11.2148
+margin_top = 42.3582
+margin_right = 75.2148
+margin_bottom = 106.358
+rect_rotation = 90.0
 rect_pivot_offset = Vector2( 32, 32 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="mouse_entered" from="BioBar/Tween/Neutral" to="." method="_on_Bonus1_mouse_entered"]
-[connection signal="mouse_exited" from="BioBar/Tween/Neutral" to="." method="_on_Bonus1_mouse_exited"]
-[connection signal="mouse_entered" from="BioBar/Tween/Tropical" to="." method="_on_Bonus2_mouse_entered"]
-[connection signal="mouse_exited" from="BioBar/Tween/Tropical" to="." method="_on_Bonus2_mouse_exited"]
-[connection signal="mouse_entered" from="BioBar/Tween/Hot" to="." method="_on_Bonus3_mouse_entered"]
-[connection signal="mouse_exited" from="BioBar/Tween/Hot" to="." method="_on_Bonus3_mouse_exited"]
-[connection signal="mouse_entered" from="BioBar/Tween/Cold" to="." method="_on_Bonus4_mouse_entered"]
-[connection signal="mouse_exited" from="BioBar/Tween/Cold" to="." method="_on_Bonus4_mouse_exited"]
+
+[node name="Cold" type="TextureRect" parent="BioBar"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 111.675
+margin_top = 39.2764
+margin_right = 175.675
+margin_bottom = 103.276
+rect_rotation = 90.0
+rect_pivot_offset = Vector2( 32, 32 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="BioBar/Neutral" to="." method="_on_Bonus1_mouse_entered"]
+[connection signal="mouse_exited" from="BioBar/Neutral" to="." method="_on_Bonus1_mouse_exited"]
+[connection signal="mouse_entered" from="BioBar/Tropical" to="." method="_on_Bonus2_mouse_entered"]
+[connection signal="mouse_exited" from="BioBar/Tropical" to="." method="_on_Bonus2_mouse_exited"]
+[connection signal="mouse_entered" from="BioBar/Hot" to="." method="_on_Bonus3_mouse_entered"]
+[connection signal="mouse_exited" from="BioBar/Hot" to="." method="_on_Bonus3_mouse_exited"]
+[connection signal="mouse_entered" from="BioBar/Cold" to="." method="_on_Bonus4_mouse_entered"]
+[connection signal="mouse_exited" from="BioBar/Cold" to="." method="_on_Bonus4_mouse_exited"]

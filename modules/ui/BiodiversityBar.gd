@@ -1,11 +1,10 @@
 extends Control
 
 onready var bar = get_node("BioBar")
-onready var tween = bar.get_child(0)
+onready var tween = $Tween
 
 export(Array, float) var bonusPercentages
 
-var biodiversityCount : float = 12;
 var bonuses : Array
 
 var mouseOver1 : bool = false
@@ -14,69 +13,59 @@ var mouseOver3 : bool = false
 var mouseOver4 : bool = false
 
 var currentButton = ""
-#func CreateBonus():
-#	for i in range(bonusPercentages.size()):
-#		pass
-#	pass
+
+var value : float setget _set_value
+
+func _set_value(val : float):
+	value = val
+	## Update bar value
+	bar.value = value
+	for i in range(bonuses.size()):
+		## Discover the buttons given the progress bar
+		if value >= bonusPercentages[i] :
+			bonuses[i].modulate.a = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	bar.value = biodiversityCount
-	var barLength = bar.margin_right
-	
-	bonuses = tween.get_children()
-	
+	bonuses = bar.get_children()
 	for i in range(bonuses.size()):
 		bonuses[i].modulate.a = 0
 		bonuses[i].rect_scale = Vector2(0.8,0.8)
-
-
-func _process(delta):
-	
-	## Update bar value
-	bar.value += 0.1
-	
-	for i in range(bonuses.size()):
-		
-		## Discover the buttons given the progress bar
-		if bar.value >= bonusPercentages[i] :
-			bonuses[i].modulate.a = 1
-
 
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			if mouseOver1 && bonusPercentages[0] <= bar.value :
 				if currentButton == "neutral" :
-					Disable($BioBar/Tween/Neutral)
+					Disable($BioBar/Neutral)
 					currentButton = ""
 					
 				else : 
-					Enable($BioBar/Tween/Neutral)
+					Enable($BioBar/Neutral)
 					currentButton = "neutral"
 				
 			if mouseOver2 && bonusPercentages[1] <= bar.value :
 				if currentButton == "tropical" :
-					Disable($BioBar/Tween/Tropical)
+					Disable($BioBar/Tropical)
 					currentButton = ""
 				else : 
-					Enable($BioBar/Tween/Tropical)
+					Enable($BioBar/Tropical)
 					currentButton = "tropical"
 			
 			if mouseOver3 && bonusPercentages[2] <= bar.value :
 				if currentButton == "hot" :
-					Disable($BioBar/Tween/Hot)
+					Disable($BioBar/Hot)
 					currentButton = ""
 				else : 
-					Enable($BioBar/Tween/Hot)
+					Enable($BioBar/Hot)
 					currentButton = "hot"
 			
 			if mouseOver4 && bonusPercentages[3] <= bar.value :
 				if currentButton == "cold" :
-					Disable($BioBar/Tween/Cold)
+					Disable($BioBar/Cold)
 					currentButton = ""
 				else : 
-					Enable($BioBar/Tween/Cold)
+					Enable($BioBar/Cold)
 					currentButton = "cold"
 
 

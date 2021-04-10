@@ -16,8 +16,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Scientific Game Jam 2021 Team Amber"
-run/main_scene="res://game/World.tscn"
+run/main_scene="res://game/Game.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [rendering]
 

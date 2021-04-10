@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://game/Game.gd" type="Script" id=1]
+[ext_resource path="res://game/World.tscn" type="PackedScene" id=2]
+[ext_resource path="res://modules/ui/GameTitle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://modules/ui/BiodiversityBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://modules/ui/GenieDialog.tscn" type="PackedScene" id=5]
+[ext_resource path="res://modules/ui/CreditScene.tscn" type="PackedScene" id=6]
+
+[node name="Game" type="Node"]
+script = ExtResource( 1 )
+
+[node name="World" parent="." instance=ExtResource( 2 )]
+
+[node name="MainMenu" parent="." instance=ExtResource( 3 )]
+
+[node name="BiodiversityProgress" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[node name="CreditScene" parent="." instance=ExtResource( 6 )]
+visible = false
+
+[node name="PhyloGeny" parent="." instance=ExtResource( 5 )]
+[connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]

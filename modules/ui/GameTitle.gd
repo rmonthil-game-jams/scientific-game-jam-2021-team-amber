@@ -1,5 +1,7 @@
 extends Control
 
+signal started
+
 onready var anim = get_node("AnimationPlayer")
 export var floatingMovement : float = 0
 
@@ -16,15 +18,12 @@ func _input(event):
 	and event.button_index == BUTTON_LEFT \
 	and event.is_pressed():
 		self.onClick()
-	
-	
-		
+
 func onClick():
 	anim.stop()
 	anim.play("Dissapear")
-	
-	### ICI IL FAUT LANCER LE DEBUT DU JEU
 
-	###
-	
-
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "Dissapear":
+		emit_signal("started")
+		queue_free()

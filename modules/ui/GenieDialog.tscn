@@ -3,8 +3,7 @@
 [ext_resource path="res://modules/ui/Dialog.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
-
-[node name="Sprite" type="Sprite"]
+[node name="PhyloGeny" type="Sprite"]
 position = Vector2( 962.068, 541.089 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )

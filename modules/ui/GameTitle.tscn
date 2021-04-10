@@ -3,7 +3,6 @@
 [ext_resource path="res://modules/ui/GameTitle.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "Dissapear"
 length = 0.7
@@ -60,3 +59,4 @@ texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
