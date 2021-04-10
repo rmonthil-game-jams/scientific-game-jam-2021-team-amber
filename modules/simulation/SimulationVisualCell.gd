@@ -1,5 +1,10 @@
 extends Spatial
 
+signal selected
+
+var I : int = -1
+var J : int = -1
+
 var state : Dictionary = {} setget _set_state
 
 func _set_state(val : Dictionary):

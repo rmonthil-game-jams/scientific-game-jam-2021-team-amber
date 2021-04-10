@@ -1,5 +1,7 @@
 extends Spatial
 
+signal cell_selected(i, j)
+
 const DX : float = 1.0
 
 var width : int = 0
@@ -8,8 +10,8 @@ var cells : Array = []
 
 func generate_from_state(state : Array):
 	# clean
-	for child in get_children():
-		child.queue_free()
+	for cell in $Cells.get_children():
+		cell.queue_free()
 	# init
 	width = state.size()
 	height = state[0].size()
@@ -20,9 +22,12 @@ func generate_from_state(state : Array):
 		for j in range(height):
 			# create cell
 			cells[i].append(preload("res://modules/simulation/SimulationVisualCell.tscn").instance())
-			add_child(cells[i][j])
+			$Cells.add_child(cells[i][j])
 			# set cell parameters
 			cells[i][j].translation = Vector3((i - width/2) * DX, 0.0, (j - height/2) + DX)
+			cells[i][j].I = i
+			cells[i][j].J = j
+			# set state
 			cells[i][j].state = state[i][j].duplicate()
 
 func update_to_state(state : Array):

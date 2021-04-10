@@ -2,14 +2,18 @@ extends Node
 
 signal step(state)
 
-const WIDTH : int = 10
-const HEIGHT : int = 10
+const WIDTH : int = 14
+const HEIGHT : int = 14
 
-const GLOBAL_PROBABILITY_OF_DEATH : float = 0.1
+const GLOBAL_PROBABILITY_OF_DEATH : float = 0.05
 const GLOBAL_PROBABILITY_OF_REPLICATION : float = 0.5
 const GLOBAL_PROBABILITY_OF_MUTATION : float = 0.1
 
-const MUTATION_INTENSITY : float = 0.1
+const BIOME_SELECTIVITY_TEMPARATE : float = 4.0
+const BIOME_SELECTIVITY_HOT : float = 2.0
+const BIOME_SELECTIVITY_COLD : float = 2.0
+
+const MUTATION_INTENSITY : float = 0.2
 
 onready var state : Array = create_empty_state(WIDTH, HEIGHT)
 
@@ -78,10 +82,19 @@ func step():
 						state[i][j] = state[i+1][j].duplicate()
 						if random_mutation_number < get_cell_probability_of_mutation(state[i][j]):
 							mutate(state[i][j])
+	# signal
 	emit_signal("step", state)
 
 func get_cell_probability_of_death(tree_cell : Dictionary):
-	return GLOBAL_PROBABILITY_OF_DEATH # TODO: deal with biomes
+	var d : float = 1.0
+	match tree_cell["biome"]:
+		"temperate":
+			d = (BIOME_SELECTIVITY_TEMPARATE * (tree_cell["species"] - Vector3(0.0, 1.0, 0.0)).length() + 1.0) / (BIOME_SELECTIVITY_TEMPARATE + 1.0)
+		"hot":
+			d = (BIOME_SELECTIVITY_HOT * (tree_cell["species"] - Vector3(1.0, 0.0, 0.0)).length() + 1.0) / (BIOME_SELECTIVITY_HOT + 1.0)
+		"cold":
+			d = (BIOME_SELECTIVITY_COLD * (tree_cell["species"] - Vector3(0.0, 0.0, 1.0)).length() + 1.0) / (BIOME_SELECTIVITY_COLD + 1.0)
+	return GLOBAL_PROBABILITY_OF_DEATH * d
 
 func get_cell_probability_of_replication(tree_cell : Dictionary):
 	return GLOBAL_PROBABILITY_OF_REPLICATION
