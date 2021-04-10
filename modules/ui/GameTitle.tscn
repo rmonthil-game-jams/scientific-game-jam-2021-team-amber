@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://modules/ui/GameTitle.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "Dissapear"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer/TextureRect:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.001, 0.002, 0.1, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 480, 128 ), Vector2( 480, 128 ), Vector2( 480, 128 ), Vector2( 480, 140 ), Vector2( 480, -200 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer/TextureRect:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 480, 128 ), Vector2( 480, 126 ), Vector2( 480, 128 ) ]
+}
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "FloatingScreen"
+anims/Dissapear = SubResource( 1 )
+anims/FloatingScreen = SubResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="AnimationPlayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -32.0
+margin_top = 128.0
+margin_right = 32.0
+margin_bottom = 192.003
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
