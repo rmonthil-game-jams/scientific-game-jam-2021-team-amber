@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://modules/ui/BiodiversityBar.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://game/assets/icons/water.svg" type="Texture" id=3]
+[ext_resource path="res://game/assets/icons/shovel.svg" type="Texture" id=4]
+[ext_resource path="res://game/assets/icons/hot.svg" type="Texture" id=5]
+[ext_resource path="res://game/assets/icons/temperate.svg" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "paint_hot"
@@ -19,10 +23,27 @@ tracks/0/keys = {
 "values": [ 0.0, -45.0, 45.0 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
+resource_name = "paint_temperate"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Container/Bonus/Shovel:rect_rotation")
+tracks/0/path = NodePath("Container/Bonus/PaintTemperate:rect_rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -45.0, 45.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "paint_water"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Container/Bonus/PaintWater:rect_rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -42,17 +63,19 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-bonus_thresholds = [ 20.0 ]
+bonus_thresholds = [ 0.0, 20.0, 40.0 ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/paint_hot = SubResource( 1 )
-anims/shovel = SubResource( 2 )
+anims/paint_temperate = SubResource( 3 )
+anims/paint_water = SubResource( 2 )
 
 [node name="Container" type="HBoxContainer" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -64.0
 margin_right = 200.0
+custom_constants/separation = 40
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -67,34 +90,89 @@ __meta__ = {
 }
 
 [node name="Bonus" type="HBoxContainer" parent="Container"]
-margin_left = 68.0
-margin_right = 132.0
+margin_left = 104.0
+margin_right = 376.0
 margin_bottom = 64.0
 rect_pivot_offset = Vector2( 32, 32 )
+custom_constants/separation = 40
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Shovel" type="TextureButton" parent="Container/Bonus"]
+[node name="PaintWater" type="TextureButton" parent="Container/Bonus"]
+visible = false
 margin_right = 64.0
 margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
 rect_pivot_offset = Vector2( 32, 32 )
 mouse_filter = 1
-texture_normal = ExtResource( 2 )
+texture_normal = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shovel" type="TextureRect" parent="Container/Bonus/PaintWater"]
+margin_left = -28.4252
+margin_top = -11.6715
+margin_right = 51.5748
+margin_bottom = 68.3285
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PaintTemperate" type="TextureButton" parent="Container/Bonus"]
+visible = false
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+rect_pivot_offset = Vector2( 32, 32 )
+mouse_filter = 1
+texture_normal = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Temperate" type="TextureRect" parent="Container/Bonus/PaintTemperate"]
+margin_left = -28.4252
+margin_top = -11.6715
+margin_right = 51.5748
+margin_bottom = 68.3285
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PaintHot" type="TextureButton" parent="Container/Bonus"]
 visible = false
-margin_left = 68.0
-margin_right = 132.0
+margin_right = 64.0
 margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
 rect_pivot_offset = Vector2( 32, 32 )
 mouse_filter = 1
-texture_normal = ExtResource( 2 )
+texture_normal = ExtResource( 5 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Container/Bonus/Shovel" to="." method="_on_Shovel_pressed"]
+
+[node name="Temperate" type="TextureRect" parent="Container/Bonus/PaintHot"]
+margin_left = -28.425
+margin_top = -11.672
+margin_right = 51.575
+margin_bottom = 68.328
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Container/Bonus/PaintWater" to="." method="_on_PaintWater_pressed"]
+[connection signal="pressed" from="Container/Bonus/PaintTemperate" to="." method="_on_PaintTemperate_pressed"]
 [connection signal="pressed" from="Container/Bonus/PaintHot" to="." method="_on_PaintHot_pressed"]
