@@ -39,6 +39,9 @@ dialogs = {
 "bucket6": "Forest biomes are distributed around the world depending on trees adaptation to temperature and rainfall.",
 "bucket7": "For example, tropical rainforests are mainly found in warm and humid climates. Try creating different types of biomes in this new world !",
 "bucket8": "Click on the brush to equip it, then click on the tile which climate you want to change. You can click again on the same bucket to unequip it. I’ll leaf you to it !",
+"congrats1": "Congrats ! Now you have discovered all the possibilities you have ! ",
+"congrats2": "Do you see that progression on the left of your screen ? Please use all you know to fill it up completely ! ",
+"congrats3": "Don’t let me down... I leaf you to it !",
 "darwin1": "Plantastic job ! It looks like our trees have adapted well to our world’s new biomes !",
 "darwin2": "This is due to natural selection, a key process of evolution.",
 "darwin3": "Species with that are best suited to their environment survive while those who are less adapted are eliminated from the ecosystems.",
@@ -111,12 +114,14 @@ volume_db = -20.0
 autoplay = true
 
 [node name="Hint" parent="." instance=ExtResource( 9 )]
+[connection signal="achievement" from="World" to="." method="_on_World_achievement"]
 [connection signal="achievement" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_achievement"]
+[connection signal="loss" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_loss"]
 [connection signal="tool_selected" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_tool_selected"]
 [connection signal="win" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_win"]
 [connection signal="bubble_finished" from="PhyloGeny" to="." method="_on_PhyloGeny_bubble_finished"]
 [connection signal="finished" from="PhyloGeny" to="." method="_on_PhyloGeny_finished"]
 [connection signal="started" from="PhyloGeny" to="." method="_on_PhyloGeny_started"]
-[connection signal="started" from="MainMenu" to="PhyloGeny" method="_on_MainMenu_started"]
 [connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]
+[connection signal="started" from="MainMenu" to="PhyloGeny" method="_on_MainMenu_started"]
 [connection signal="achievement" from="Achievements" to="." method="_on_Achievements_achievement"]

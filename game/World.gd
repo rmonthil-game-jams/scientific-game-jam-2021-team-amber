@@ -1,6 +1,9 @@
 extends Spatial
 
+signal achievement(achievement_name)
+
 var current_tool : String = "shovel"
+var sandmanOnce : bool = false
 
 # interface
 
@@ -21,6 +24,9 @@ func _on_Selecter_selected(i, j):
 			$Simulation.paint(i, j, "temperate")
 		"paint_hot":
 			$Simulation.paint(i, j, "hot")
+			if not sandmanOnce :
+				emit_signal("achievement", "sandman")
+				sandmanOnce = true
 		"paint_cold":
 			$Simulation.paint(i, j, "cold")
 

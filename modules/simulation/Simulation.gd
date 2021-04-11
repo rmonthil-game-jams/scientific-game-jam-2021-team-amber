@@ -27,14 +27,14 @@ func clear() -> void:
 
 func set_empty_state() -> void:
 	$SimulationCore.MUTATION_INTENSITY = 0.0
-	$SimulationCore.GLOBAL_PROBABILITY_OF_DEATH = 0.5
+	$SimulationCore.GLOBAL_PROBABILITY_OF_DEATH = 0.8
 	$SimulationCore.state = $SimulationCore.create_empty_state()
 	$SimulationVisual.generate_from_state($SimulationCore.state)
 	$CreateRock.play()
 
 func set_init_state() -> void:
-	$SimulationCore.MUTATION_INTENSITY = 0.5
-	$SimulationCore.GLOBAL_PROBABILITY_OF_DEATH = 0.1
+	$SimulationCore.MUTATION_INTENSITY = 0.4
+	$SimulationCore.GLOBAL_PROBABILITY_OF_DEATH = 0.2
 	$SimulationCore.state = $SimulationCore.create_init_state()
 	$SimulationVisual.generate_from_state($SimulationCore.state)
 	$CreateRock.play()

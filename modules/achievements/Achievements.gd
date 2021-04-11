@@ -15,7 +15,7 @@ var onceMatchmaker : bool = false
 var numberOfTrees : float = 0
 
 #Variable matchmaker
-var thresholdMatchmaker :float = 30
+var thresholdMatchmaker : float = 35
 
 #cell
 #{

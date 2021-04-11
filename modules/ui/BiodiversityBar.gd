@@ -10,12 +10,11 @@ signal tool_selected(tool_name)
 var current_tool = ""
 var newSpeciesOnce = false
 var slowMotionOnce = false
-var sandmanOnce = false 
 var unlockToolOnce = false
 export(Array, float) var bonus_thresholds
 onready var sim_step : Node = get_node("../World/Simulation/SimulationCore")
 
-var value : float setget _set_value
+var value : float = 1.0 setget _set_value
 
 func _set_value(val : float):
 	value = val
@@ -31,16 +30,18 @@ func _set_value(val : float):
 			$Bonus.get_child(i).disabled = false
 			emit_signal("bonus", $Bonus.get_child(i).name.to_lower())
 	## over
-	if value >= 10 && not newSpeciesOnce:
+	if value >= 17 && not newSpeciesOnce:
 		emit_signal("achievement","newspecies")
 		newSpeciesOnce = true
-	if value <= 20 && sim_step.numberOfSteps > 100 && slowMotionOnce:
+	if value <= 30 && sim_step.numberOfSteps > 100 && not slowMotionOnce:
 		emit_signal("achievement", "slowmotion")
 		slowMotionOnce = true
 	if value > 100.0:
-		emit_signal("win")
+		if visible:
+			emit_signal("win")
 	elif value == 0.0:
-		emit_signal("loss")
+		if visible:
+			emit_signal("loss")
 		
 func _reset_bonus_rotation():
 	for bonus in $Bonus.get_children():
@@ -61,9 +62,6 @@ func _on_PaintTemperate_pressed():
 		_reset_bonus_rotation()
 
 func _on_PaintHot_pressed():
-	if not sandmanOnce :
-		emit_signal("achievement", "sandman")
-		sandmanOnce = true
 	if current_tool != "paint_hot":
 		current_tool = "paint_hot"
 		$AnimationPlayer.play("paint_hot")

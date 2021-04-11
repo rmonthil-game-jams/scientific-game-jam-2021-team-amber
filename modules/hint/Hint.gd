@@ -22,3 +22,5 @@ func _on_TextureButton_pressed():
 		Genie.StartDialog("hint_newspecies", 1)
 	elif  not bioDiv.sandmanOnce :
 		Genie.StartDialog("hint_sandman", 1)
+	else:
+		Genie.StartDialog("congrats", 4)

@@ -45,7 +45,7 @@ func GenieSays(var text : String):
 
 func _on_MainMenu_started():
 	isTalking = false
-	StartDialog("intro", 6)
+	StartDialog("intro", 16)
 
 func _on_TextureButton_pressed():
 	if Text.get_visible_characters() > Text.get_total_character_count():
