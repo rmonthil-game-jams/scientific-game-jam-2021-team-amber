@@ -1,7 +1,8 @@
 extends Control
 
-signal started
-signal finished
+signal started(dialogue)
+signal finished(dialogue)
+signal bubble_finished(dialogue)
 
 onready var Text = get_node("TextureRect/Text")
 
@@ -28,10 +29,9 @@ func StartDialog(dialogue : String, number : int):
 	Text.set_bbcode(dialogs[currentDialogState+ str(currentDialogNumber)])
 	Text.set_visible_characters(0)
 	currentDialogNumber += 1
-	emit_signal("started")
+	emit_signal("started", dialogue)
 
 func NextDialogue():
-	print(currentDialogNumber)
 	Text.set_bbcode(dialogs[currentDialogState+ str(currentDialogNumber)])
 	Text.set_visible_characters(0)
 	currentDialogNumber += 1
@@ -51,9 +51,11 @@ func _on_MainMenu_started():
 func _on_TextureButton_pressed():
 	if Text.get_visible_characters() > Text.get_total_character_count():
 		if currentDialogNumber < totalStateNumber:
+			emit_signal("bubble_finished", currentDialogState + str(currentDialogNumber))
 			NextDialogue()
 		else:
-			emit_signal("finished")
+			emit_signal("bubble_finished", currentDialogState + str(currentDialogNumber))
+			emit_signal("finished", currentDialogState)
 			visible = false
 	else :
 		Text.set_visible_characters(Text.get_total_character_count())
