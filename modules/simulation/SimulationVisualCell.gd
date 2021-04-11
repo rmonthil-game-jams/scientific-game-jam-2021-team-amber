@@ -104,36 +104,35 @@ func _spawn_tree(species : Vector3, biome : String):
 		# build trees
 		for i in range(randi()%3 + 1):
 			var new_tree : Spatial
-			match biome:
-				"temperate":
-					match (randi() % 3):
-						0:
-							new_tree = preload("res://game/assets/biome_neutral/scenes/TreeSmall.tscn").instance()
-							var foliage_material : SpatialMaterial = preload("res://game/assets/colors.tres").duplicate()
-							foliage_material.albedo_color = Color(species.x, species.y, species.z)
-							new_tree.get_node("MeshInstance").set_surface_material(1, foliage_material)
-						1:
-							new_tree = preload("res://game/assets/biome_neutral/scenes/Tree.tscn").instance()
-							var foliage_material : SpatialMaterial = preload("res://game/assets/colors.tres").duplicate()
-							foliage_material.albedo_color = Color(species.x, species.y, species.z)
-							new_tree.get_node("MeshInstance").set_surface_material(1, foliage_material)
-						2:
-							new_tree = preload("res://game/assets/biome_neutral/scenes/TreeLarge.tscn").instance()
-							var foliage_material : SpatialMaterial = preload("res://game/assets/colors.tres").duplicate()
-							foliage_material.albedo_color = Color(species.x, species.y, species.z)
-							new_tree.get_node("MeshInstance").set_surface_material(0, foliage_material)
-				"hot":
-					match (randi() % 100):
-						0:
-							new_tree = preload("res://game/assets/biome_desert/scenes/Acacia.tscn").instance()
-							var foliage_material : SpatialMaterial = preload("res://game/assets/colors.tres").duplicate()
-							foliage_material.albedo_color = Color(species.x, species.y, species.z)
-							new_tree.get_node("MeshInstance").set_surface_material(1, foliage_material)
-						_:
-							new_tree = preload("res://game/assets/biome_desert/scenes/Cactus.tscn").instance()
-							var foliage_material : SpatialMaterial = preload("res://game/assets/colors_cactus.tres").duplicate()
-							foliage_material.albedo_color = Color(species.x, species.y, species.z)
-							new_tree.get_node("MeshInstance").set_surface_material(0, foliage_material)
+			if species[0] < species[1]:
+				match (randi() % 3):
+					0:
+						new_tree = preload("res://game/assets/biome_neutral/scenes/TreeSmall.tscn").instance()
+						var foliage_material : SpatialMaterial = preload("res://game/assets/colors.tres").duplicate()
+						foliage_material.albedo_color = Color(species.x, species.y, species.z)
+						new_tree.get_node("MeshInstance").set_surface_material(1, foliage_material)
+					1:
+						new_tree = preload("res://game/assets/biome_neutral/scenes/Tree.tscn").instance()
+						var foliage_material : SpatialMaterial = preload("res://game/assets/colors.tres").duplicate()
+						foliage_material.albedo_color = Color(species.x, species.y, species.z)
+						new_tree.get_node("MeshInstance").set_surface_material(1, foliage_material)
+					2:
+						new_tree = preload("res://game/assets/biome_neutral/scenes/TreeLarge.tscn").instance()
+						var foliage_material : SpatialMaterial = preload("res://game/assets/colors.tres").duplicate()
+						foliage_material.albedo_color = Color(species.x, species.y, species.z)
+						new_tree.get_node("MeshInstance").set_surface_material(0, foliage_material)
+			else:
+				match (randi() % 100):
+					0:
+						new_tree = preload("res://game/assets/biome_desert/scenes/Acacia.tscn").instance()
+						var foliage_material : SpatialMaterial = preload("res://game/assets/colors.tres").duplicate()
+						foliage_material.albedo_color = Color(species.x, species.y, species.z)
+						new_tree.get_node("MeshInstance").set_surface_material(1, foliage_material)
+					_:
+						new_tree = preload("res://game/assets/biome_desert/scenes/Cactus.tscn").instance()
+						var foliage_material : SpatialMaterial = preload("res://game/assets/colors_cactus.tres").duplicate()
+						foliage_material.albedo_color = Color(species.x, species.y, species.z)
+						new_tree.get_node("MeshInstance").set_surface_material(0, foliage_material)
 			current_ground.get_node("Trees").add_child(new_tree)
 			# translation
 			new_tree.translation += Vector3(rand_range(-0.3, 0.3), 0.0, rand_range(-0.3, 0.3))

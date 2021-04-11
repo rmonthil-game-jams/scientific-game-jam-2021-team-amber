@@ -1,10 +1,10 @@
-extends Control
+extends Node2D
 
 signal started(dialogue)
 signal finished(dialogue)
 signal bubble_finished(dialogue)
 
-onready var Text = get_node("TextureRect/Text")
+onready var Text = get_node("Text")
 
 export(Dictionary) var dialogs
 var isTalking :  bool = true

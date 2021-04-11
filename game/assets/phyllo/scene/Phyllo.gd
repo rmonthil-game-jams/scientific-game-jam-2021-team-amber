@@ -10,4 +10,4 @@ func speak():
 	$AnimationPlayer.play("Speak")
 
 func idle():
-	$AnimationPlayer.play("Idle")
+	$AnimationPlayer.play("Ilde")

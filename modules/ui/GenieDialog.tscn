@@ -1,59 +1,37 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://modules/ui/Dialog.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
 
-[node name="Dialogue" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
+[node name="Dialogue" type="Node2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="TextureRect" type="TextureRect" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -92.0
-margin_top = -88.0
-margin_right = -28.0
-margin_bottom = -24.0
-rect_pivot_offset = Vector2( 32, 32 )
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Polygon2D" type="Polygon2D" parent="TextureRect"]
-position = Vector2( 70.209, 55.5992 )
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( 59.0263, -75.0544 )
 polygon = PoolVector2Array( -414.274, -154.66, -59.89, -160.606, -54.7249, -79.5761, -65.1075, -67.3057, -76.9059, -74.8568, -400.003, -69.0374 )
 
-[node name="Timer" type="Timer" parent="TextureRect/Polygon2D"]
+[node name="Timer" type="Timer" parent="Polygon2D"]
 wait_time = 0.02
 autostart = true
 
-[node name="Text" type="RichTextLabel" parent="TextureRect"]
-margin_left = -317.791
-margin_top = -89.4008
-margin_right = -4.79102
-margin_bottom = -27.4008
+[node name="Text" type="RichTextLabel" parent="."]
+margin_left = -324.484
+margin_top = -222.299
+margin_right = -11.4838
+margin_bottom = -160.299
 rect_clip_content = false
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton" type="TextureButton" parent="TextureRect"]
-margin_left = -347.791
-margin_top = -104.401
-margin_right = 15.209
-margin_bottom = -10.4008
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = -356.729
+margin_top = -235.055
+margin_right = 6.27127
+margin_bottom = -141.054
 mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="timeout" from="TextureRect/Polygon2D/Timer" to="." method="_on_Timer_timeout"]
-[connection signal="pressed" from="TextureRect/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="timeout" from="Polygon2D/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
