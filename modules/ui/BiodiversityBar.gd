@@ -20,16 +20,16 @@ var value : float setget _set_value
 func _set_value(val : float):
 	value = val
 	## update
-	$Container/TextureProgress.value = value
+	$TextureProgress.value = value
 	for i in range(bonus_thresholds.size()):
 		## discover the buttons given the progress bar
 		if value >= bonus_thresholds[i]:
 			if not unlockToolOnce :
 				emit_signal("achievement", "bucket")
 				unlockToolOnce = true
-			$Container/Bonus.get_child(i).show()
-			$Container/Bonus.get_child(i).disabled = false
-			emit_signal("bonus", $Container/Bonus.get_child(i).name.to_lower())
+			$Bonus.get_child(i).show()
+			$Bonus.get_child(i).disabled = false
+			emit_signal("bonus", $Bonus.get_child(i).name.to_lower())
 	## over
 	if value >= 10 && not newSpeciesOnce:
 		emit_signal("achievement","newspecies")
@@ -43,7 +43,7 @@ func _set_value(val : float):
 		emit_signal("loss")
 		
 func _reset_bonus_rotation():
-	for bonus in $Container/Bonus.get_children():
+	for bonus in $Bonus.get_children():
 		bonus.rect_rotation = 0.0
 
 func _on_PaintWater_pressed():
@@ -61,7 +61,7 @@ func _on_PaintTemperate_pressed():
 		_reset_bonus_rotation()
 
 func _on_PaintHot_pressed():
-	if  not sandmanOnce :
+	if not sandmanOnce :
 		emit_signal("achievement", "sandman")
 		sandmanOnce = true
 	if current_tool != "paint_hot":

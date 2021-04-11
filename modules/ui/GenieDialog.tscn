@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://modules/ui/Dialog.gd" type="Script" id=1]
+[ext_resource path="res://game/assets/font/lightout.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 2 )
 
 [node name="Dialogue" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,13 +17,15 @@ polygon = PoolVector2Array( -414.274, -154.66, -59.89, -160.606, -54.7249, -79.5
 wait_time = 0.02
 autostart = true
 
-[node name="Text" type="RichTextLabel" parent="."]
-margin_left = -324.484
-margin_top = -222.299
-margin_right = -11.4838
-margin_bottom = -160.299
-rect_clip_content = false
-custom_colors/default_color = Color( 0, 0, 0, 1 )
+[node name="Text" type="Label" parent="."]
+margin_left = -332.0
+margin_top = -222.0
+margin_right = -12.0
+margin_bottom = -160.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+autowrap = true
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

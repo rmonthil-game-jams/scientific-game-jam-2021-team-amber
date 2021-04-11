@@ -1,52 +1,54 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://modules/ui/RetryButton.gd" type="Script" id=2]
+[ext_resource path="res://modules/ui/CreditScene.gd" type="Script" id=1]
+[ext_resource path="res://game/assets/ui/BontonLarge.png" type="Texture" id=2]
+[ext_resource path="res://game/assets/ui/Credits.png" type="Texture" id=3]
+[ext_resource path="res://game/assets/font/lightout.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 46
+font_data = ExtResource( 4 )
 
 [node name="CreditScene" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.594589
 margin_right = 0.594604
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 38.7401
-margin_top = -134.101
-margin_right = 146.74
-margin_bottom = -22.1012
-bbcode_text = "	Our team :
-Sc : Lizzy
-GD : Palo
-Dev : Rémi and 			Simon
-Graph : Kévin
-Audio : Dorian"
-text = "	Our team :
-Sc : Lizzy
-GD : Palo
-Dev : Rémi and 			Simon
-Graph : Kévin
-Audio : Dorian"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RetryButton" type="TextureRect" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
+[node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -86.0
-margin_top = -96.0
-margin_right = -22.0
-margin_bottom = -32.0
-texture = ExtResource( 1 )
-script = ExtResource( 2 )
+texture = ExtResource( 3 )
+expand = true
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 716.0
+margin_top = 482.0
+margin_right = 989.0
+margin_bottom = 564.0
+texture_normal = ExtResource( 2 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="mouse_entered" from="RetryButton" to="RetryButton" method="_on_RetryButton_mouse_entered"]
+
+[node name="Label" type="Label" parent="TextureButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.7894
+margin_top = -25.0109
+margin_right = 52.2106
+margin_bottom = 25.9891
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.317647, 0.25098, 0.192157, 1 )
+text = "restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

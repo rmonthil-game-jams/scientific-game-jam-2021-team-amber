@@ -2,12 +2,12 @@
 
 [ext_resource path="res://modules/simulation/SimulationVisual.gd" type="Script" id=1]
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=1]
 flags_unshaded = true
 albedo_color = Color( 0.105882, 0.34902, 0.541176, 1 )
 
 [sub_resource type="PlaneMesh" id=2]
-material = SubResource( 3 )
+material = SubResource( 1 )
 size = Vector2( 100, 100 )
 
 [node name="SimulationVisual" type="Spatial"]

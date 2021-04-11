@@ -48,9 +48,6 @@ func _on_Achievements_achievement(achievement_name : String):
 			$World/Pivot/Camera/Pyllo.angry()
 #		"okbiomer":
 #			$PhyloGeny.StartDialog("okbiomer", 4)
-		"sandman":
-			$PhyloGeny.StartDialog("sandman", 4)
-			$World/Pivot/Camera/Pyllo.happy()
 
 func _on_BiodiversityProgress_achievement(achievement_name):
 	match achievement_name:
@@ -58,6 +55,9 @@ func _on_BiodiversityProgress_achievement(achievement_name):
 			$PhyloGeny.StartDialog("newspecies", 3)
 		"slowmotion":
 			$PhyloGeny.StartDialog("slowmotion", 2)
+		"sandman":
+			$PhyloGeny.StartDialog("sandman", 4)
+			$World/Pivot/Camera/Pyllo.happy()
 
 func _on_BiodiversityProgress_win():
 	$CreditScene.show()

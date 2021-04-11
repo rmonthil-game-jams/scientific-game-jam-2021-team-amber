@@ -1,17 +1,18 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://modules/ui/BiodiversityBar.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://game/assets/icons/water.svg" type="Texture" id=3]
-[ext_resource path="res://game/assets/icons/shovel.svg" type="Texture" id=4]
-[ext_resource path="res://game/assets/icons/hot.svg" type="Texture" id=5]
-[ext_resource path="res://game/assets/icons/temperate.svg" type="Texture" id=6]
+[ext_resource path="res://game/assets/ui/BarreProgress.png" type="Texture" id=2]
+[ext_resource path="res://game/assets/ui/BontonPelleWater.png" type="Texture" id=3]
+[ext_resource path="res://game/assets/ui/BontonPelleNormal.png" type="Texture" id=4]
+[ext_resource path="res://game/assets/ui/BontonPelleSable.png" type="Texture" id=5]
+[ext_resource path="res://game/assets/ui/BarreProgressFront.png" type="Texture" id=7]
+[ext_resource path="res://game/assets/font/lightout.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "paint_hot"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Container/Bonus/PaintHot:rect_rotation")
+tracks/0/path = NodePath("Bonus/PaintHot:rect_rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -27,7 +28,7 @@ tracks/0/keys = {
 resource_name = "paint_temperate"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Container/Bonus/PaintTemperate:rect_rotation")
+tracks/0/path = NodePath("Bonus/PaintTemperate:rect_rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -42,7 +43,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Container/Bonus/PaintWater:rect_rotation")
+tracks/0/path = NodePath("Bonus/PaintWater:rect_rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -53,6 +54,10 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0.0, -45.0, 45.0 ]
 }
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+font_data = ExtResource( 8 )
 
 [node name="BiodiversityBar" type="Control"]
 anchor_right = 1.0
@@ -69,40 +74,39 @@ anims/paint_hot = SubResource( 1 )
 anims/paint_temperate = SubResource( 2 )
 anims/paint_water = SubResource( 3 )
 
-[node name="Container" type="HBoxContainer" parent="."]
+[node name="TextureProgress" type="TextureProgress" parent="."]
+anchor_bottom = 1.0
+margin_left = 19.0
+margin_top = 15.0
+margin_right = 94.0
+margin_bottom = -18.0
+value = 100.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 7 )
+fill_mode = 3
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bonus" type="HBoxContainer" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -64.0
-margin_right = 200.0
-custom_constants/separation = 40
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureProgress" type="TextureProgress" parent="Container"]
-margin_right = 64.0
-margin_bottom = 64.0
-texture_progress = ExtResource( 2 )
-fill_mode = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Bonus" type="HBoxContainer" parent="Container"]
-margin_left = 104.0
-margin_right = 104.0
-margin_bottom = 64.0
+margin_left = 142.984
+margin_top = -86.4746
+margin_right = 206.984
+margin_bottom = -22.4746
+rect_scale = Vector2( 1, -1 )
 rect_pivot_offset = Vector2( 32, 32 )
 custom_constants/separation = 40
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PaintWater" type="TextureButton" parent="Container/Bonus"]
-visible = false
-margin_right = 64.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
+[node name="PaintWater" type="TextureButton" parent="Bonus"]
+margin_right = 150.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 150, 150 )
 rect_pivot_offset = Vector2( 32, 32 )
 mouse_filter = 1
 texture_normal = ExtResource( 3 )
@@ -111,48 +115,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Shovel" type="TextureRect" parent="Container/Bonus/PaintWater"]
-margin_left = -28.4252
-margin_top = -11.6715
-margin_right = 51.5748
-margin_bottom = 68.3285
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PaintTemperate" type="TextureButton" parent="Container/Bonus"]
-visible = false
-margin_right = 64.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
+[node name="PaintTemperate" type="TextureButton" parent="Bonus"]
+margin_left = 190.0
+margin_right = 340.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 150, 150 )
 rect_pivot_offset = Vector2( 32, 32 )
 mouse_filter = 1
-texture_normal = ExtResource( 6 )
+texture_normal = ExtResource( 4 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Temperate" type="TextureRect" parent="Container/Bonus/PaintTemperate"]
-margin_left = -28.4252
-margin_top = -11.6715
-margin_right = 51.5748
-margin_bottom = 68.3285
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PaintHot" type="TextureButton" parent="Container/Bonus"]
-visible = false
-margin_right = 64.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
+[node name="PaintHot" type="TextureButton" parent="Bonus"]
+margin_left = 380.0
+margin_right = 530.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 150, 150 )
 rect_pivot_offset = Vector2( 32, 32 )
 mouse_filter = 1
 texture_normal = ExtResource( 5 )
@@ -161,17 +141,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Temperate" type="TextureRect" parent="Container/Bonus/PaintHot"]
-margin_left = -28.425
-margin_top = -11.672
-margin_right = 51.575
-margin_bottom = 68.328
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
-[connection signal="pressed" from="Container/Bonus/PaintWater" to="." method="_on_PaintWater_pressed"]
-[connection signal="pressed" from="Container/Bonus/PaintTemperate" to="." method="_on_PaintTemperate_pressed"]
-[connection signal="pressed" from="Container/Bonus/PaintHot" to="." method="_on_PaintHot_pressed"]
+[node name="Label" type="Label" parent="."]
+margin_left = 110.998
+margin_top = 29.4314
+margin_right = 508.998
+margin_bottom = 73.4314
+custom_fonts/font = SubResource( 4 )
+text = "The awesome Phylometer"
+[connection signal="pressed" from="Bonus/PaintWater" to="." method="_on_PaintWater_pressed"]
+[connection signal="pressed" from="Bonus/PaintTemperate" to="." method="_on_PaintTemperate_pressed"]
+[connection signal="pressed" from="Bonus/PaintHot" to="." method="_on_PaintHot_pressed"]
