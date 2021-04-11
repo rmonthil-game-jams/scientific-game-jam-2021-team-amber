@@ -111,6 +111,5 @@ autoplay = true
 [connection signal="bubble_finished" from="PhyloGeny" to="." method="_on_PhyloGeny_bubble_finished"]
 [connection signal="finished" from="PhyloGeny" to="." method="_on_PhyloGeny_finished"]
 [connection signal="started" from="PhyloGeny" to="." method="_on_PhyloGeny_started"]
-[connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]
 [connection signal="started" from="MainMenu" to="PhyloGeny" method="_on_MainMenu_started"]
 [connection signal="achievement" from="Achievements" to="." method="_on_Achievements_achievement"]
