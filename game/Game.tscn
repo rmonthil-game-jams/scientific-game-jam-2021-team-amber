@@ -106,9 +106,11 @@ WORLD_PATH = NodePath("../World")
 stream = ExtResource( 8 )
 volume_db = -20.0
 autoplay = true
+[connection signal="achievement" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_achievement"]
 [connection signal="tool_selected" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_tool_selected"]
 [connection signal="bubble_finished" from="PhyloGeny" to="." method="_on_PhyloGeny_bubble_finished"]
 [connection signal="finished" from="PhyloGeny" to="." method="_on_PhyloGeny_finished"]
 [connection signal="started" from="PhyloGeny" to="." method="_on_PhyloGeny_started"]
 [connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]
 [connection signal="started" from="MainMenu" to="PhyloGeny" method="_on_MainMenu_started"]
+[connection signal="achievement" from="Achievements" to="." method="_on_Achievements_achievement"]
