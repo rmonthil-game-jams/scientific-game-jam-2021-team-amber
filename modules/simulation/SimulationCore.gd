@@ -2,18 +2,18 @@ extends Node
 
 signal step(state)
 
-const WIDTH : int = 16
+const WIDTH : int = 17
 const HEIGHT : int = 10
 
-const GLOBAL_PROBABILITY_OF_DEATH : float = 0.1
-const GLOBAL_PROBABILITY_OF_REPLICATION : float = 0.5
-const GLOBAL_PROBABILITY_OF_MUTATION : float = 0.5
+const GLOBAL_PROBABILITY_OF_DEATH : float = 0.2
+const GLOBAL_PROBABILITY_OF_REPLICATION : float = 0.6
+const GLOBAL_PROBABILITY_OF_MUTATION : float = 0.05
 
 const BIOME_SELECTIVITY_TEMPARATE : float = 2.0
 const BIOME_SELECTIVITY_HOT : float = 2.0
 const BIOME_SELECTIVITY_COLD : float = 2.0
 
-const MUTATION_INTENSITY : float = 0.2
+const MUTATION_INTENSITY : float = 0.5
 
 onready var state : Array = create_empty_state(WIDTH, HEIGHT)
 
