@@ -13,26 +13,28 @@ func paint(i : int, j : int, biome : String) -> void:
 		$SimulationCore.state[i][j]["biome"] = biome
 	$SimulationVisual.cells[i][j].state = $SimulationCore.state[i][j].duplicate()
 
-#func preshovel(i, j) -> void:
-#	pass
-#
-#func shovel(i, j) -> void:
-#	if $SimulationCore.state[i][j]["type"] == "water":
-#		$SimulationCore.state[i][j]["type"] = "land"
-#		$SimulationCore.state[i][j]["biome"] = "temperate"
-#		$CreateRock.play()
-#	else:
-#		$SimulationCore.state[i][j].erase("biome")
-#		if $SimulationCore.state[i][j]["type"] == "tree":
-#			$SimulationCore.state[i][j].erase("species")
-#		$SimulationCore.state[i][j]["type"] = "water"
-#		$CreateWater.play()
-#	$SimulationVisual.cells[i][j].state = $SimulationCore.state[i][j].duplicate()
-
 func get_diversity() -> float:
 	return $SimulationCore.get_diversity()
 
-# internal
+func clear() -> void:
+	for i in range($SimulationCore.WIDTH):
+		for j in range($SimulationCore.HEIGHT):
+			$SimulationCore.state[i][j].erase("biome")
+			$SimulationCore.state[i][j].erase("species")
+			$SimulationCore.state[i][j]["type"] = "water"
+			$SimulationVisual.cells[i][j].state = $SimulationCore.state[i][j].duplicate()
+	$CreateWater.play()
 
-func _ready():
+func set_empty_state() -> void:
+	$SimulationCore.MUTATION_INTENSITY = 0.0
+	$SimulationCore.GLOBAL_PROBABILITY_OF_DEATH = 0.5
+	$SimulationCore.state = $SimulationCore.create_empty_state()
 	$SimulationVisual.generate_from_state($SimulationCore.state)
+	$CreateRock.play()
+
+func set_init_state() -> void:
+	$SimulationCore.MUTATION_INTENSITY = 0.5
+	$SimulationCore.GLOBAL_PROBABILITY_OF_DEATH = 0.1
+	$SimulationCore.state = $SimulationCore.create_init_state()
+	$SimulationVisual.generate_from_state($SimulationCore.state)
+	$CreateRock.play()
