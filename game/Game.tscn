@@ -30,6 +30,8 @@ bonus_thresholds = [ 0.0, 0.0, 20.0 ]
 [node name="PhyloGeny" parent="." instance=ExtResource( 5 )]
 dialogs = {
 " slowmotion3": "...don’t disrupt their environment too much, just enough to isolate and preserve the interesting mutations.",
+"hint_newspecies": "You know what ? Sometimes you should just wait while nature runs its course. Something’ll eventually happen.",
+"hint_tectonik": "Why don’t you try using the shovel to create new continents and oceans ?",
 "intro1": "Hi there. And who are you …?",
 "intro10": "You’ll notice that trees with new colors will appear - this means that mutations are accumulating in their genome and they are progressively becoming more and more different. Remember, genetic diversity matters in the awesome Phylometer’s computations.",
 "intro11": "Look, I’ll lend you my shovel. With that, you can transform water in ground, or ground in water, by just clicking on it. You can also click and drag to draw oceans, islands and continents. Go on, try it !",
