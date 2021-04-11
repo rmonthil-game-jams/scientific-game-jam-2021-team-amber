@@ -12,8 +12,8 @@ var is_trees_clearing : bool = false
 
 var state : Dictionary = {} setget _set_state
 
-onready var current_ground : Spatial = $Ground
-var current_ground_biome : String = "temperate"
+onready var current_ground : Spatial = null
+var current_ground_biome : String = ""
 
 # interface
 
@@ -64,7 +64,8 @@ func _spawn_land(biome : String):
 			current_ground.show()
 		else:
 			current_ground_biome = biome
-			current_ground.queue_free()
+			if current_ground:
+				current_ground.queue_free()
 			match biome:
 				"temperate":
 					current_ground = preload("res://game/assets/biome_neutral/scenes/Ground.tscn").instance()
@@ -143,7 +144,7 @@ func _spawn_tree(species : Vector3, biome : String):
 			$TweenTrees.start()
 
 func _clear_tree():
-	if not is_trees_clearing:
+	if not is_trees_clearing and current_ground:
 		if is_trees_spawning:
 			$TweenTrees.stop_all()
 			is_trees_spawning = false
