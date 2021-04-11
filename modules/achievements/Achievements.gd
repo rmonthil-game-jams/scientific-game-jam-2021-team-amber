@@ -11,6 +11,11 @@ onready var width : int = simulation_core.WIDTH
 onready var height : int = simulation_core.HEIGHT
 var onceTectonik : bool = false
 var onceIsland : bool = false
+var onceMatchmaker : bool = false
+var numberOfTrees : float = 0
+
+#Variable matchmaker
+var thresholdMatchmaker :float = 30
 
 #cell
 #{
@@ -57,6 +62,14 @@ func _process(delta):
 			numberOfContinent += 1
 		else :
 			numberOfIslands += 1
+	for i in range(width):
+		for j in range(height):
+			if simulation_state[i][j].type == "tree" : 
+				numberOfTrees += 1 
+	if totalContinentArea >0 :
+		if (numberOfTrees/totalContinentArea)*100 <= thresholdMatchmaker && not onceMatchmaker:
+			emit_signal("achievement", "matchmaker")
+			onceMatchmaker = true
 	if numberOfContinent >1 && not onceTectonik :
 		emit_signal("achievement", "tectonik")
 		onceTectonik = true
@@ -64,6 +77,7 @@ func _process(delta):
 		emit_signal("achievement", "kangaroo")
 		onceIsland = true
 	continents.clear()
+	numberOfTrees = 0
 
 func ContinentDetection(var i : int, var j :int, var ctnIndex : int, var sim_state):
 	#Register as belonging to a continent

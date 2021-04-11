@@ -15,6 +15,7 @@ var BIOME_SELECTIVITY_HOT : float = 2.0
 var BIOME_SELECTIVITY_COLD : float = 2.0
 
 var MUTATION_INTENSITY : float = 0.5
+var numberOfSteps : int = 0
 
 onready var state : Array = []
 
@@ -136,6 +137,7 @@ func step():
 							if random_mutation_number < get_cell_probability_of_mutation(state[i][j]):
 								mutate(state[i][j])
 		# signal
+		numberOfSteps += 1
 		emit_signal("step", state)
 
 func get_cell_probability_of_death(tree_cell : Dictionary):
