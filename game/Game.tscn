@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://game/Game.gd" type="Script" id=1]
 [ext_resource path="res://game/World.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://modules/ui/CreditScene.tscn" type="PackedScene" id=6]
 [ext_resource path="res://modules/achievements/Achievements.tscn" type="PackedScene" id=7]
 [ext_resource path="res://game/assets/music/Musicv2.ogg" type="AudioStream" id=8]
+[ext_resource path="res://modules/ui/Hint.tscn" type="PackedScene" id=9]
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
@@ -106,6 +107,8 @@ WORLD_PATH = NodePath("../World")
 stream = ExtResource( 8 )
 volume_db = -20.0
 autoplay = true
+
+[node name="Hint" parent="." instance=ExtResource( 9 )]
 [connection signal="achievement" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_achievement"]
 [connection signal="tool_selected" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_tool_selected"]
 [connection signal="bubble_finished" from="PhyloGeny" to="." method="_on_PhyloGeny_bubble_finished"]
