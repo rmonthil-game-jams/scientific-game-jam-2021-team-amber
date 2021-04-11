@@ -33,7 +33,7 @@ func set_empty_state() -> void:
 	$CreateRock.play()
 
 func set_init_state() -> void:
-	$SimulationCore.MUTATION_INTENSITY = 0.4
+	$SimulationCore.MUTATION_INTENSITY = 0.6
 	$SimulationCore.GLOBAL_PROBABILITY_OF_DEATH = 0.2
 	$SimulationCore.state = $SimulationCore.create_init_state()
 	$SimulationVisual.generate_from_state($SimulationCore.state)

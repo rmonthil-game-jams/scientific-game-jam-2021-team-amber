@@ -5,14 +5,13 @@ signal step(state)
 const WIDTH : int = 17
 const HEIGHT : int = 10
 
-
-var GLOBAL_PROBABILITY_OF_DEATH : float = 0.2
+var GLOBAL_PROBABILITY_OF_DEATH : float = 0.25
 var GLOBAL_PROBABILITY_OF_REPLICATION : float = 0.6
-var GLOBAL_PROBABILITY_OF_MUTATION : float = 0.05
+var GLOBAL_PROBABILITY_OF_MUTATION : float = 0.6
 
-var BIOME_SELECTIVITY_TEMPARATE : float = 2.5
-var BIOME_SELECTIVITY_HOT : float = 2.5
-var BIOME_SELECTIVITY_COLD : float = 2.5
+var BIOME_SELECTIVITY_TEMPARATE : float = 10.0
+var BIOME_SELECTIVITY_HOT : float = 10.0
+var BIOME_SELECTIVITY_COLD : float = 10.0
 
 var MUTATION_INTENSITY : float = 0.5
 var numberOfSteps : int = 0

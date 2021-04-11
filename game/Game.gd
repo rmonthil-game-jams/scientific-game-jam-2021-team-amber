@@ -8,7 +8,7 @@ func _on_MainMenu_started():
 	$World/Pivot/Camera/Pyllo.angry()
 
 func _process(delta):
-	$BiodiversityProgress.value = 300.0 * $World/Simulation.get_diversity()
+	$BiodiversityProgress.value = 420.0 * $World/Simulation.get_diversity()
 	$PhyloGeny.global_position = $World/Pivot/Camera.unproject_position($World/Pivot/Camera/Pyllo.global_transform.origin)
 
 func _on_BiodiversityProgress_tool_selected(tool_name):

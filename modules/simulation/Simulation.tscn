@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://modules/simulation/Simulation.gd" type="Script" id=1]
 [ext_resource path="res://modules/simulation/SimulationCore.tscn" type="PackedScene" id=2]
 [ext_resource path="res://modules/simulation/SimulationVisual.tscn" type="PackedScene" id=3]
-[ext_resource path="res://game/assets/sounds/feedback/create_rock.ogg" type="AudioStream" id=5]
+[ext_resource path="res://game/assets/sounds/new_feedback/Create_RockIn.ogg" type="AudioStream" id=4]
+[ext_resource path="res://game/assets/sounds/new_feedback/Create_waterLoop.ogg" type="AudioStream" id=5]
 [ext_resource path="res://game/assets/sounds/feedback/create_water.ogg" type="AudioStream" id=6]
 [ext_resource path="res://modules/time_correlated_sound/TimeCorrelatedSound.tscn" type="PackedScene" id=7]
+[ext_resource path="res://game/assets/sounds/new_feedback/Create_RockLoop.ogg" type="AudioStream" id=8]
 
 [node name="Simulation" type="Spatial"]
 script = ExtResource( 1 )
@@ -15,8 +17,14 @@ script = ExtResource( 1 )
 [node name="SimulationVisual" parent="." instance=ExtResource( 3 )]
 
 [node name="CreateRock" parent="." instance=ExtResource( 7 )]
-stream = ExtResource( 5 )
+stream = ExtResource( 4 )
+
+[node name="LoopRock" parent="." instance=ExtResource( 7 )]
+stream = ExtResource( 8 )
 
 [node name="CreateWater" parent="." instance=ExtResource( 7 )]
 stream = ExtResource( 6 )
+
+[node name="LoopWater" parent="." instance=ExtResource( 7 )]
+stream = ExtResource( 5 )
 [connection signal="step" from="SimulationCore" to="SimulationVisual" method="_on_SimulationCore_step"]

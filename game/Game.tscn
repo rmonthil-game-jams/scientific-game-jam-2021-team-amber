@@ -110,7 +110,7 @@ WORLD_PATH = NodePath("../World")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-volume_db = -20.0
+volume_db = -8.5
 autoplay = true
 
 [node name="Hint" parent="." instance=ExtResource( 9 )]
@@ -122,6 +122,6 @@ autoplay = true
 [connection signal="bubble_finished" from="PhyloGeny" to="." method="_on_PhyloGeny_bubble_finished"]
 [connection signal="finished" from="PhyloGeny" to="." method="_on_PhyloGeny_finished"]
 [connection signal="started" from="PhyloGeny" to="." method="_on_PhyloGeny_started"]
-[connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]
 [connection signal="started" from="MainMenu" to="PhyloGeny" method="_on_MainMenu_started"]
+[connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]
 [connection signal="achievement" from="Achievements" to="." method="_on_Achievements_achievement"]

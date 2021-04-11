@@ -1,5 +1,7 @@
 extends RayCast
 
+var pressed : bool = false
+
 signal preselected(i, j)
 signal selected(i, j)
 
@@ -15,6 +17,7 @@ func _unhandled_input(event):
 				current = get_collider().get_parent()
 				if Input.is_mouse_button_pressed(BUTTON_LEFT):
 					emit_signal("selected", current.I, current.J)
+					pressed = false
 				else:
 					emit_signal("preselected", current.I, current.J)
 	elif event is InputEventMouseButton:
@@ -23,3 +26,4 @@ func _unhandled_input(event):
 				if get_collider() and not get_collider().is_queued_for_deletion():
 					current = get_collider().get_parent()
 					emit_signal("selected", current.I, current.J)
+					pressed = true

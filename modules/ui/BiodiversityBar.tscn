@@ -1,12 +1,15 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://modules/ui/BiodiversityBar.gd" type="Script" id=1]
 [ext_resource path="res://game/assets/ui/BarreProgress.png" type="Texture" id=2]
 [ext_resource path="res://game/assets/ui/BontonPelleWater.png" type="Texture" id=3]
 [ext_resource path="res://game/assets/ui/BontonPelleNormal.png" type="Texture" id=4]
 [ext_resource path="res://game/assets/ui/BontonPelleSable.png" type="Texture" id=5]
+[ext_resource path="res://game/assets/sounds/new_ui/UI_Brush-002.ogg" type="AudioStream" id=6]
 [ext_resource path="res://game/assets/ui/BarreProgressFront.png" type="Texture" id=7]
 [ext_resource path="res://game/assets/font/lightout.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://game/assets/sounds/new_ui/UI_Brush-001.ogg" type="AudioStream" id=9]
+[ext_resource path="res://game/assets/sounds/new_ui/UI_Brush-003.ogg" type="AudioStream" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "paint_hot"
@@ -153,6 +156,15 @@ text = "The awesome Phylometer"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Brush1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="Brush2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Brush3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
 [connection signal="pressed" from="Bonus/PaintWater" to="." method="_on_PaintWater_pressed"]
 [connection signal="pressed" from="Bonus/PaintTemperate" to="." method="_on_PaintTemperate_pressed"]
 [connection signal="pressed" from="Bonus/PaintHot" to="." method="_on_PaintHot_pressed"]

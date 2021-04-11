@@ -22,6 +22,7 @@ func _input(event):
 			pass
 
 func StartDialog(dialogue : String, number : int):
+	$AudioStreamPlayer.play()
 	visible = true
 	currentDialogState = dialogue
 	totalStateNumber = number
@@ -30,8 +31,11 @@ func StartDialog(dialogue : String, number : int):
 	Text.set_visible_characters(0)
 	currentDialogNumber += 1
 	emit_signal("started", dialogue)
+	$TimerVoice.start()
+	_on_TimerVoice_timeout()
 
 func NextDialogue():
+	$AudioStreamPlayer.play()
 	Text.text = dialogs[currentDialogState+ str(currentDialogNumber)]
 	Text.set_visible_characters(0)
 	currentDialogNumber += 1
@@ -56,5 +60,10 @@ func _on_TextureButton_pressed():
 			emit_signal("bubble_finished", currentDialogState + str(currentDialogNumber))
 			emit_signal("finished", currentDialogState)
 			visible = false
+			$TimerVoice.stop()
 	else :
 		Text.set_visible_characters(Text.get_total_character_count())
+
+func _on_TimerVoice_timeout():
+	var i = randi() % 6
+	get_node("Voice" + str(i)).play()

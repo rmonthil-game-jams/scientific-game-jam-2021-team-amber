@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/UI_Brush-001.ogg-8c9ca4ca1ae458ed8ab85beab77c6b75.oggstr"
+
+[deps]
+
+source_file="res://game/assets/sounds/new_ui/UI_Brush-001.ogg"
+dest_files=[ "res://.import/UI_Brush-001.ogg-8c9ca4ca1ae458ed8ab85beab77c6b75.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

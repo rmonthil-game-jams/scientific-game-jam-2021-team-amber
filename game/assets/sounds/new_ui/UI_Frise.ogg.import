@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/UI_Frise.ogg-33546c25e80089a87d01fbb49a112163.oggstr"
+
+[deps]
+
+source_file="res://game/assets/sounds/new_ui/UI_Frise.ogg"
+dest_files=[ "res://.import/UI_Frise.ogg-33546c25e80089a87d01fbb49a112163.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

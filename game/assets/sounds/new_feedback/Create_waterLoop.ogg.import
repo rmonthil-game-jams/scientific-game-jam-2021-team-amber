@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Create_waterLoop.ogg-55e0ea6520a850596fc2439c73bc35b8.oggstr"
+
+[deps]
+
+source_file="res://game/assets/sounds/new_feedback/Create_waterLoop.ogg"
+dest_files=[ "res://.import/Create_waterLoop.ogg-55e0ea6520a850596fc2439c73bc35b8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

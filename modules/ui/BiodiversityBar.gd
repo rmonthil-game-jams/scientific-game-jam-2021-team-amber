@@ -30,10 +30,10 @@ func _set_value(val : float):
 			$Bonus.get_child(i).disabled = false
 			emit_signal("bonus", $Bonus.get_child(i).name.to_lower())
 	## over
-	if value >= 17 && not newSpeciesOnce:
+	if value >= 40 && not newSpeciesOnce:
 		emit_signal("achievement","newspecies")
 		newSpeciesOnce = true
-	if value <= 30 && sim_step.numberOfSteps > 100 && not slowMotionOnce:
+	if value <= 60 && sim_step.numberOfSteps > 60 && not slowMotionOnce:
 		emit_signal("achievement", "slowmotion")
 		slowMotionOnce = true
 	if value > 100.0:
@@ -53,6 +53,7 @@ func _on_PaintWater_pressed():
 		$AnimationPlayer.play("paint_water")
 		emit_signal("tool_selected", "paint_water")
 		_reset_bonus_rotation()
+		$Brush1.play()
 
 func _on_PaintTemperate_pressed():
 	if current_tool != "paint_temperate":
@@ -60,6 +61,7 @@ func _on_PaintTemperate_pressed():
 		$AnimationPlayer.play("paint_temperate")
 		emit_signal("tool_selected", "paint_temperate")
 		_reset_bonus_rotation()
+		$Brush2.play()
 
 func _on_PaintHot_pressed():
 	if current_tool != "paint_hot":
@@ -67,3 +69,4 @@ func _on_PaintHot_pressed():
 		$AnimationPlayer.play("paint_hot")
 		emit_signal("tool_selected", "paint_hot")
 		_reset_bonus_rotation()
+		$Brush3.play()

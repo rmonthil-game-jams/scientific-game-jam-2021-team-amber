@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Random_voice-004.ogg-6a7af910851f128ec1d9669d94535c11.oggstr"
+
+[deps]
+
+source_file="res://game/assets/sounds/Random_voice-004.ogg"
+dest_files=[ "res://.import/Random_voice-004.ogg-6a7af910851f128ec1d9669d94535c11.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
