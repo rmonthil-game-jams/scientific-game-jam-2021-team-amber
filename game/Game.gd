@@ -1,8 +1,5 @@
 extends Control
 
-func _ready():
-	$Achievements.set_process(false)
-
 func _on_MainMenu_started():
 	$BiodiversityProgress.show()
 
