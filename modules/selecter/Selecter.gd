@@ -20,5 +20,6 @@ func _unhandled_input(event):
 	elif event is InputEventMouseButton:
 		if event.pressed and event.button_index == BUTTON_LEFT:
 			if is_colliding():
-				current = get_collider().get_parent()
-				emit_signal("selected", current.I, current.J)
+				if not get_collider().is_queued_for_deletion():
+					current = get_collider().get_parent()
+					emit_signal("selected", current.I, current.J)
