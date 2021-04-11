@@ -31,4 +31,3 @@ func get_diversity() -> float:
 
 func _ready():
 	$SimulationVisual.generate_from_state($SimulationCore.state)
-	$SimulationVisualUI.generate_from_state($SimulationCore.state)

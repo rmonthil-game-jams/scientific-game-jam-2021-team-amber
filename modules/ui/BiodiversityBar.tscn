@@ -3,119 +3,98 @@
 [ext_resource path="res://modules/ui/BiodiversityBar.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.368627, 0.541176, 0.0627451, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[sub_resource type="Animation" id=1]
+resource_name = "paint_hot"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Container/Bonus/PaintHot:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -45.0, 45.0 ]
+}
 
-[sub_resource type="StyleBoxFlat" id=2]
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[sub_resource type="Animation" id=2]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Container/Bonus/Shovel:rect_rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -45.0, 45.0 ]
+}
 
-[node name="BiodiversityProgress" type="Control"]
+[node name="BiodiversityBar" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-bonusPercentages = [ 12, 38, 49, 73 ]
+bonus_thresholds = [ 20.0 ]
 
-[node name="Tween" type="Tween" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/paint_hot = SubResource( 1 )
+anims/shovel = SubResource( 2 )
 
-[node name="BioBar" type="ProgressBar" parent="."]
+[node name="Container" type="HBoxContainer" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = -121.0
-margin_right = 360.0
-margin_bottom = -89.0
-rect_rotation = -90.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-percent_visible = false
+margin_top = -64.0
+margin_right = 200.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Neutral" type="TextureRect" parent="BioBar"]
-modulate = Color( 1, 1, 1, 0 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -195.879
-margin_top = 43.205
-margin_right = -131.879
-margin_bottom = 107.205
-rect_rotation = 90.0
-rect_pivot_offset = Vector2( 32, 32 )
-texture = ExtResource( 2 )
+[node name="TextureProgress" type="TextureProgress" parent="Container"]
+margin_right = 64.0
+margin_bottom = 64.0
+texture_progress = ExtResource( 2 )
+fill_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tropical" type="TextureRect" parent="BioBar"]
-modulate = Color( 1, 1, 1, 0 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -84.8985
-margin_top = 40.5102
-margin_right = -20.8985
-margin_bottom = 104.51
-rect_rotation = 90.0
+[node name="Bonus" type="HBoxContainer" parent="Container"]
+margin_left = 68.0
+margin_right = 132.0
+margin_bottom = 64.0
 rect_pivot_offset = Vector2( 32, 32 )
-texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hot" type="TextureRect" parent="BioBar"]
-modulate = Color( 1, 1, 1, 0 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 11.2148
-margin_top = 42.3582
-margin_right = 75.2148
-margin_bottom = 106.358
-rect_rotation = 90.0
+[node name="Shovel" type="TextureButton" parent="Container/Bonus"]
+margin_right = 64.0
+margin_bottom = 64.0
 rect_pivot_offset = Vector2( 32, 32 )
-texture = ExtResource( 2 )
+mouse_filter = 1
+texture_normal = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cold" type="TextureRect" parent="BioBar"]
-modulate = Color( 1, 1, 1, 0 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 111.675
-margin_top = 39.2764
-margin_right = 175.675
-margin_bottom = 103.276
-rect_rotation = 90.0
+[node name="PaintHot" type="TextureButton" parent="Container/Bonus"]
+visible = false
+margin_left = 68.0
+margin_right = 132.0
+margin_bottom = 64.0
 rect_pivot_offset = Vector2( 32, 32 )
-texture = ExtResource( 2 )
+mouse_filter = 1
+texture_normal = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="mouse_entered" from="BioBar/Neutral" to="." method="_on_Bonus1_mouse_entered"]
-[connection signal="mouse_exited" from="BioBar/Neutral" to="." method="_on_Bonus1_mouse_exited"]
-[connection signal="mouse_entered" from="BioBar/Tropical" to="." method="_on_Bonus2_mouse_entered"]
-[connection signal="mouse_exited" from="BioBar/Tropical" to="." method="_on_Bonus2_mouse_exited"]
-[connection signal="mouse_entered" from="BioBar/Hot" to="." method="_on_Bonus3_mouse_entered"]
-[connection signal="mouse_exited" from="BioBar/Hot" to="." method="_on_Bonus3_mouse_exited"]
-[connection signal="mouse_entered" from="BioBar/Cold" to="." method="_on_Bonus4_mouse_entered"]
-[connection signal="mouse_exited" from="BioBar/Cold" to="." method="_on_Bonus4_mouse_exited"]
+[connection signal="pressed" from="Container/Bonus/Shovel" to="." method="_on_Shovel_pressed"]
+[connection signal="pressed" from="Container/Bonus/PaintHot" to="." method="_on_PaintHot_pressed"]

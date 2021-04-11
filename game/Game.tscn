@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://game/Game.gd" type="Script" id=1]
 [ext_resource path="res://game/World.tscn" type="PackedScene" id=2]
@@ -7,18 +7,23 @@
 [ext_resource path="res://modules/ui/GenieDialog.tscn" type="PackedScene" id=5]
 [ext_resource path="res://modules/ui/CreditScene.tscn" type="PackedScene" id=6]
 [ext_resource path="res://modules/achievements/Achievements.tscn" type="PackedScene" id=7]
+[ext_resource path="res://game/assets/music/Musicv2.ogg" type="AudioStream" id=8]
 
-[node name="Game" type="Node"]
+[node name="Game" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="World" parent="." instance=ExtResource( 2 )]
 
-[node name="MainMenu" parent="." instance=ExtResource( 3 )]
-
-[node name="BiodiversityProgress" parent="." instance=ExtResource( 4 )]
+[node name="CreditScene" parent="." instance=ExtResource( 6 )]
 visible = false
 
-[node name="CreditScene" parent="." instance=ExtResource( 6 )]
+[node name="BiodiversityProgress" parent="." instance=ExtResource( 4 )]
 visible = false
 
 [node name="PhyloGeny" parent="." instance=ExtResource( 5 )]
@@ -33,7 +38,17 @@ dialogs = {
 "intro8": "Look, I’ll lend you my shovel. With that, you can transform water in ground, or ground in water, by just clicking on it. You can also click and drag to draw oceans, islands and continents. Go on, try it !"
 }
 
+[node name="MainMenu" parent="." instance=ExtResource( 3 )]
+
 [node name="Achievements" parent="." instance=ExtResource( 7 )]
 WORLD_PATH = NodePath("../World")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -20.0
+autoplay = true
+[connection signal="tool_selected" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_tool_selected"]
+[connection signal="finished" from="PhyloGeny" to="." method="_on_PhyloGeny_finished"]
+[connection signal="started" from="PhyloGeny" to="." method="_on_PhyloGeny_started"]
 [connection signal="started" from="MainMenu" to="PhyloGeny" method="_on_MainMenu_started"]
 [connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]

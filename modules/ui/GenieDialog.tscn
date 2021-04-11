@@ -6,6 +6,7 @@
 [node name="Dialogue" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -30,28 +31,29 @@ __meta__ = {
 position = Vector2( 70.209, 55.5992 )
 polygon = PoolVector2Array( -414.274, -154.66, -59.89, -160.606, -54.7249, -79.5761, -65.1075, -67.3057, -76.9059, -74.8568, -400.003, -69.0374 )
 
-[node name="Text" type="RichTextLabel" parent="TextureRect/Polygon2D"]
-margin_left = -388.0
-margin_top = -145.0
-margin_right = -75.0
-margin_bottom = -83.0
+[node name="Timer" type="Timer" parent="TextureRect/Polygon2D"]
+wait_time = 0.02
+autostart = true
+
+[node name="Text" type="RichTextLabel" parent="TextureRect"]
+margin_left = -317.791
+margin_top = -89.4008
+margin_right = -4.79102
+margin_bottom = -27.4008
 rect_clip_content = false
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Timer" type="Timer" parent="TextureRect/Polygon2D"]
-wait_time = 0.02
-autostart = true
-
-[node name="TextureButton" type="TextureButton" parent="TextureRect/Polygon2D"]
-margin_left = -418.0
-margin_top = -160.0
-margin_right = -55.0
-margin_bottom = -66.0
+[node name="TextureButton" type="TextureButton" parent="TextureRect"]
+margin_left = -347.791
+margin_top = -104.401
+margin_right = 15.209
+margin_bottom = -10.4008
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="timeout" from="TextureRect/Polygon2D/Timer" to="." method="_on_Timer_timeout"]
-[connection signal="pressed" from="TextureRect/Polygon2D/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="TextureRect/TextureButton" to="." method="_on_TextureButton_pressed"]
