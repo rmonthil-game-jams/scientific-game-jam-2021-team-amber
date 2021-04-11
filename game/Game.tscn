@@ -25,17 +25,45 @@ visible = false
 
 [node name="BiodiversityProgress" parent="." instance=ExtResource( 4 )]
 visible = false
+bonus_thresholds = [ 0.0, 0.0, 20.0 ]
 
 [node name="PhyloGeny" parent="." instance=ExtResource( 5 )]
 dialogs = {
+" slowmotion3": "...don’t disrupt their environment too much, just enough to isolate and preserve the interesting mutations.",
 "intro1": "Hi there. And who are you …?",
+"intro10": "You’ll notice that trees with new colors will appear - this means that mutations are accumulating in their genome and they are progressively becoming more and more different. Remember, genetic diversity matters in the awesome Phylometer’s computations.",
+"intro11": "Look, I’ll lend you my shovel. With that, you can transform water in ground, or ground in water, by just clicking on it. You can also click and drag to draw oceans, islands and continents. Go on, try it !",
+"intro12": "Okay, great. Now I’m a little afraid of failing again at preserving biodiversity, so I’ll just let you try some things out and give me a poke when you need help.",
+"intro13": "I’m rooting for you !",
 "intro2": "How did you even get there ?? Oh, never mind, nothing matters anymore. There are no trees left anyway.",
-"intro3": "Look at my planet ! It’s desertic, it’s awful ! Everything was going just fine for millions of years, and suddenly… *sobs*",
+"intro3": "Look at my planet ! It’s a desert, it’s awful ! Everything had been going just fine for millions of years, and suddenly… *sobs*",
 "intro4": "Oh don’t worry, I’m just pretending to cry. It’s a trick I learned from humans. I’m a PhyloGenie, I can’t physically cry !",
 "intro5": "Well I guess I’ll have to try again from the beginning. Hey, since you’re here, don’t stay there just watching ! You might as well help me.",
 "intro6": "Okay, I went back in time to the moment when there was only one continent and a couple of species. Back then, the climate was tropical everywhere.",
-"intro7": "I’ll teach you some of my tricks for starters.",
-"intro8": "Look, I’ll lend you my shovel. With that, you can transform water in ground, or ground in water, by just clicking on it. You can also click and drag to draw oceans, islands and continents. Go on, try it !"
+"intro7": "What we need now is to make this planet great again and restore its former biodiversity ! This means increasing the variety of species but also how different they are from each other. I’m going to keep track of the diversity of our new ecosystems in my awesome Phylometer, there, to your left.",
+"intro8": "For now, it is pretty low, and I count on you to help me improve it and reach the top of the awesome Phylometer !",
+"intro9": "I’ll teach you some of my tricks, for starters.",
+"kangaroo1": "Looks like you’ve made islands !!",
+"kangaroo2": "Islands have very high endemism, which means certain species are unique and only found on some very specific islands around the world !",
+"kangaroo3": "Protecting their biodiversity is very important because what makes them unique also makes them vulnerable.",
+"matchmaker1": "Hmmm, in my HUMBLE opinion, your trees are having trouble reproducing.",
+"matchmaker2": "You know, maybe you shouldn't have created so many rivers and oceans. Trees need some space to reproduce, right ?",
+"newspecies1": "Congratulations, new species have appeared ! ",
+"newspecies2": "Over time, mutations appear and accumulate in trees’ genomes so much that they can eventually become different species altogether.",
+"newspecies3": "The appearance of new species is called speciation. How in-tree-guing !",
+"okbiomer1": "Congratulations it’s a biome!",
+"okbiomer2": "A biome is a large area characterized by its vegetation, soil, climate, and wildlife.",
+"okbiomer3": "Forest biomes are distributed around the world depending on trees adaptation to temperature and rainfall.",
+"okbiomer4": "For example, tropical rainforests are mainly found in warm and humid climates. Try creating different types of biomes in this new world !",
+"sandman1": "Is it me or is it getting hot in here? Oh, my bad, you’ve created an arid biome.",
+"sandman2": "These regions are characterized by extreme temperatures and a lack of water.",
+"sandman3": "Can you guess what plant adaptations have been selected to withstand such harsh conditions ?",
+"sandman4": "I’ll give you a hint desert plants are often swollen, spiny, and have tiny leaves that are rarely bright green.",
+"slowmotion1": "Look, I’m bored. Let’s be realistic here, nothing is happening.",
+"slowmotion2": "For both our sakes, I suggest you find a way to isolate the species and colors you find most interesting, without preventing them from reproducing. Which means :",
+"tectonik1": "Nice contin-ent !",
+"tectonik2": "It seems our new world has gotten itself a new continent. When continents split because of underlying tectonic plates,",
+"tectonik3": "...forests are fragmented and can experience different evolutionary paths. This leads to a phenomenon called vicariance."
 }
 
 [node name="MainMenu" parent="." instance=ExtResource( 3 )]
@@ -48,9 +76,7 @@ stream = ExtResource( 8 )
 volume_db = -20.0
 autoplay = true
 [connection signal="tool_selected" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_tool_selected"]
-[connection signal="bubble_finished" from="PhyloGeny" to="." method="_on_PhyloGeny_bubble_finished"]
 [connection signal="finished" from="PhyloGeny" to="." method="_on_PhyloGeny_finished"]
 [connection signal="started" from="PhyloGeny" to="." method="_on_PhyloGeny_started"]
-[connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]
 [connection signal="started" from="MainMenu" to="PhyloGeny" method="_on_MainMenu_started"]
-[connection signal="achievement" from="Achievements" to="." method="_on_Achievements_achievement"]
+[connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]
