@@ -29,9 +29,26 @@ bonus_thresholds = [ 0.0, 0.0, 20.0 ]
 
 [node name="PhyloGeny" parent="." instance=ExtResource( 5 )]
 dialogs = {
-" slowmotion3": "...don’t disrupt their environment too much, just enough to isolate and preserve the interesting mutations.",
+"achiever1": "Well that’s embarrassing… looks like I have nothing left to teach you.",
+"bucket1": "Oh WOW the awesome Phylometer is getting crazy ! Did you really do this ?",
+"bucket2": "Hum… nope. Not impressed. I could have done the same, okay ??",
+"bucket3": "… Yeah I guess I’m a little impressed but don’t make me say it louder.",
+"bucket4": "Makes me think, there’s a trick I forgot to tell you about. If you use these paintbrushes, you can change the climate.",
+"bucket5": "By doing so, you will create biomes. A biome is a large area characterized by its vegetation, soil, climate, and wildlife.",
+"bucket6": "Forest biomes are distributed around the world depending on trees adaptation to temperature and rainfall.",
+"bucket7": "For example, tropical rainforests are mainly found in warm and humid climates. Try creating different types of biomes in this new world !",
+"bucket8": "Click on the brush to equip it, then click on the tile which climate you want to change. You can click again on the same bucket to unequip it. I’ll leaf you to it !",
+"darwin1": "Plantastic job ! It looks like our trees have adapted well to our world’s new biomes !",
+"darwin2": "This is due to natural selection, a key process of evolution.",
+"darwin3": "Species with that are best suited to their environment survive while those who are less adapted are eliminated from the ecosystems.",
+"gameover1": "Hey, listen… This planet… LOOKS A LOT LIKE THE ONE WE STARTED WITH, don’t you think ?",
+"gameover2": "I guess it’s not that easy for you either, huh ? Nevermind. Let’s learn from our mistakes and try again.",
+"hint_kangaroo": "Why don’t you try using the shovel to create islands ?",
 "hint_newspecies": "You know what ? Sometimes you should just wait while nature runs its course. Something’ll eventually happen.",
+"hint_okbiomer": "Have you tried out changing the climate ? I hear you humans love that ! ",
+"hint_sandman": "Have you heard? there’s a new biome in town ! Why don’t you check it out ?",
 "hint_tectonik": "Why don’t you try using the shovel to create new continents and oceans ?",
+"hint_winter": "Have you heard? there’s a new biome in town ! Why don’t you check it out ?",
 "intro1": "Hi there. And who are you …?",
 "intro10": "You’ll notice that trees with new colors will appear - this means that mutations are accumulating in their genome and they are progressively becoming more and more different. Remember, genetic diversity matters in the awesome Phylometer’s computations.",
 "intro11": "Look, I’ll lend you my shovel. With that, you can transform water in ground, or ground in water, by just clicking on it. You can also click and drag to draw oceans, islands and continents. Go on, try it !",
@@ -63,9 +80,21 @@ dialogs = {
 "sandman4": "I’ll give you a hint desert plants are often swollen, spiny, and have tiny leaves that are rarely bright green.",
 "slowmotion1": "Look, I’m bored. Let’s be realistic here, nothing is happening.",
 "slowmotion2": "For both our sakes, I suggest you find a way to isolate the species and colors you find most interesting, without preventing them from reproducing. Which means :",
+"slowmotion3": "...don’t disrupt their environment too much, just enough to isolate and preserve the interesting mutations.",
+"slowmotion4": "I also suggest you create pathways between continents, this would allow species to travel a little.",
 "tectonik1": "Nice contin-ent !",
 "tectonik2": "It seems our new world has gotten itself a new continent. When continents split because of underlying tectonic plates,",
-"tectonik3": "...forests are fragmented and can experience different evolutionary paths. This leads to a phenomenon called vicariance."
+"tectonik3": "...forests are fragmented and can experience different evolutionary paths. This leads to a phenomenon called vicariance.",
+"temper1": "Check out the leaves in that forest !",
+"temper2": "Deciduous forests are composed mainly of broadleaf trees, such as maple and oak, that shed all their leaves during winter.",
+"terminator1": "Careful my succulent friend ! It seems that one of your once luxuriant forests has been whipped out.",
+"terminator2": "Don’t worry extinction is a natural process and may occur for many reasons such as habitat loss or overhunting.",
+"terminator3": "Let’s try bringing in more species and recolonize this new land.",
+"win1": "Vic-tree is ours ! You really humbled me there !!",
+"win2": "I cannot thank you enough for these beautiful forests. Let’s watch from the beginning how you did it and I’ll take it from there.",
+"winter1": "Oh ! Boreal forests, just what we needled !",
+"winter2": "Did you snow that these terrestrial biomes have the lowest annual average temperatures and very short growing seasons for plants ?",
+"winter3": "These forests are coniferous, dominated by larch, spruce, fir and pine."
 }
 
 [node name="MainMenu" parent="." instance=ExtResource( 3 )]
