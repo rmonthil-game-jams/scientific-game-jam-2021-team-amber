@@ -11,5 +11,5 @@ dest_files=[ "res://.import/ui_tree.ogg-6ce7729e63e23a713220c18a778227f3.oggstr"
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

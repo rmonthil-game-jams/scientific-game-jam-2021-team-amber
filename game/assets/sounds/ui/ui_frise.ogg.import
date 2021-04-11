@@ -11,5 +11,5 @@ dest_files=[ "res://.import/ui_frise.ogg-6bae78d3e999fc8db7b2986118106ef9.oggstr
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
