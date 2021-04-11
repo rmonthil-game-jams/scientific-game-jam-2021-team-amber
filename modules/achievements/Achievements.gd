@@ -9,6 +9,9 @@ var continents = {}
 var indexToSet = 0
 onready var width : int = simulation_core.WIDTH
 onready var height : int = simulation_core.HEIGHT
+var onceTectonik : bool = false
+var onceIsland : bool = false
+
 #cell
 #{
 #	"type":"tree" or "water" or "land"
@@ -42,9 +45,27 @@ func _process(delta):
 			continents.erase(key)
 	# achievements detection
 	## Tectonik Master
+	var numberOfContinent = 0
+	var numberOfIslands = 0
+	var totalContinentArea = 0
+	print(continents)
 	for continent in continents:
 		var size : int = continents[continent]
-	print(continents)
+		totalContinentArea += size
+	for continent in continents:
+		var size : int = continents[continent]
+		if size > totalContinentArea * 0.25:
+			numberOfContinent += 1
+		else :
+			numberOfIslands += 1
+	print(numberOfContinent)
+	print(numberOfIslands)
+	if numberOfContinent >1 && not onceTectonik :
+		emit_signal("achievement", "tectonik")
+		onceTectonik = true
+	if numberOfIslands > 1 && not onceIsland :
+		emit_signal("achievement", "kangaroo")
+		onceIsland = true
 	continents.clear()
 
 func ContinentDetection(var i : int, var j :int, var ctnIndex : int, var sim_state):
@@ -58,7 +79,7 @@ func ContinentDetection(var i : int, var j :int, var ctnIndex : int, var sim_sta
 	if i >0:
 		if not sim_state[i-1][j].duplicate().type == "water" && cellMap[i-1][j] < 0:
 			ContinentDetection(i-1, j, ctnIndex, sim_state)
-		elif cellMap[i-1][j] >= 0 && cellMap[i-1][j] != ctnIndex:
+		elif cellMap[i-1][j] >= 0 && cellMap[i-1][j] != ctnIndex && not sim_state[i-1][j].duplicate().type == "water":
 			if continents.has(cellMap[i-1][j]) && continents.has(ctnIndex):
 				continents[ctnIndex] += continents[cellMap[i-1][j]]
 				ChangeContinent(i-1,j,ctnIndex,cellMap[i-1][j], sim_state)
@@ -66,7 +87,7 @@ func ContinentDetection(var i : int, var j :int, var ctnIndex : int, var sim_sta
 	if i < width-1:
 		if not sim_state[i+1][j].duplicate().type == "water" && cellMap[i+1][j] < 0:
 			ContinentDetection(i+1, j, ctnIndex, sim_state)
-		elif cellMap[i+1][j] >= 0 && cellMap[i+1][j] != ctnIndex:
+		elif not sim_state[i+1][j].duplicate().type == "water" && cellMap[i+1][j] >= 0 && cellMap[i+1][j] != ctnIndex:
 			if continents.has(cellMap[i+1][j]) && continents.has(ctnIndex):
 				continents[ctnIndex] += continents[cellMap[i+1][j]]
 				ChangeContinent(i+1,j,ctnIndex,cellMap[i+1][j], sim_state)
@@ -74,7 +95,7 @@ func ContinentDetection(var i : int, var j :int, var ctnIndex : int, var sim_sta
 	if j > 0:
 		if not sim_state[i][j-1].duplicate().type == "water" && cellMap[i][j-1] < 0:
 			ContinentDetection(i, j-1, ctnIndex, sim_state)
-		elif cellMap[i][j-1] >= 0 && cellMap[i][j-1] != ctnIndex:
+		elif not sim_state[i][j-1].duplicate().type == "water" && cellMap[i][j-1] >= 0 && cellMap[i][j-1] != ctnIndex:
 			if continents.has(cellMap[i][j-1]) && continents.has(ctnIndex):
 				continents[ctnIndex] += continents[cellMap[i][j-1]]
 				ChangeContinent(i,j-1,ctnIndex,cellMap[i][j-1], sim_state)
@@ -82,7 +103,7 @@ func ContinentDetection(var i : int, var j :int, var ctnIndex : int, var sim_sta
 	if j < height-1:
 		if not sim_state[i][j+1].duplicate().type == "water" && cellMap[i][j+1] < 0:
 			ContinentDetection(i, j+1, ctnIndex, sim_state)
-		elif cellMap[i][j+1] >= 0 && cellMap[i][j+1] != ctnIndex:
+		elif  not sim_state[i][j+1].duplicate().type == "water" && cellMap[i][j+1] >= 0 && cellMap[i][j+1] != ctnIndex:
 			if continents.has(cellMap[i][j+1]) && continents.has(ctnIndex):
 				continents[ctnIndex] += continents[cellMap[i][j+1]]
 				ChangeContinent(i,j+1,ctnIndex,cellMap[i][j+1], sim_state)
