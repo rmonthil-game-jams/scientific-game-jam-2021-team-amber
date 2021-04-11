@@ -23,13 +23,10 @@ func _on_PhyloGeny_finished(dialogue : String):
 	$BiodiversityProgress.show()
 
 func _on_PhyloGeny_bubble_finished(dialogue : String):
-	print(dialogue)
 	match dialogue:
 		"intro5":
-			print("poire")
 			$World/Simulation.clear()
 		"intro6":
-			print("pomme")
 			$World/Simulation.set_init_state()
 
 func _on_Achievements_achievement(achievement_name : String):
