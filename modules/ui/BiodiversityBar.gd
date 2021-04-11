@@ -1,5 +1,6 @@
 extends Control
 
+signal achievement(achievement_name)
 signal bonus(bonus)
 signal loss()
 signal win()

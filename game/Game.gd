@@ -28,3 +28,10 @@ func _on_PhyloGeny_bubble_finished(dialogue : String):
 			$World/Simulation.clear()
 		"intro6":
 			$World/Simulation.set_init_state()
+
+func _on_Achievements_achievement(achievement_name : String):
+	match achievement_name:
+		"tectonik":
+			$PhyloGeny.StartDialog("teck", 6)
+		"kangaroo":
+			pass
