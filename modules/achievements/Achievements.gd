@@ -48,7 +48,6 @@ func _process(delta):
 	var numberOfContinent = 0
 	var numberOfIslands = 0
 	var totalContinentArea = 0
-	print(continents)
 	for continent in continents:
 		var size : int = continents[continent]
 		totalContinentArea += size
@@ -58,8 +57,6 @@ func _process(delta):
 			numberOfContinent += 1
 		else :
 			numberOfIslands += 1
-	print(numberOfContinent)
-	print(numberOfIslands)
 	if numberOfContinent >1 && not onceTectonik :
 		emit_signal("achievement", "tectonik")
 		onceTectonik = true

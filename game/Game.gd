@@ -2,8 +2,6 @@ extends Control
 
 func _ready():
 	$World/Simulation.set_empty_state()
-	# TODO: remove the following
-	$Achievements.set_process(false)
 
 func _on_MainMenu_started():
 	$BiodiversityProgress.show()
