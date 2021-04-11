@@ -16,6 +16,7 @@ var BIOME_SELECTIVITY_COLD : float = 2.0
 
 var MUTATION_INTENSITY : float = 0.5
 var numberOfSteps : int = 0
+var isAllSet : bool = false
 
 onready var state : Array = []
 
@@ -45,7 +46,8 @@ func create_init_state() -> Array:
 	for i in range(WIDTH):
 		matrix.append([])  
 		for j in range(HEIGHT):
-			matrix[i].append({"type":"tree", "species":Vector3(0.7, 1.0, 0.4).normalized(), "biome":"temperate"})
+			matrix[i].append({"type":"tree", "species":Vector3(rand_range(0.4,0.7),rand_range(0.7,1), rand_range(0.2,0.4)).normalized(), "biome":"temperate"})
+	isAllSet = true
 	return matrix
 
 func get_diversity() -> float:

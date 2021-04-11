@@ -32,12 +32,16 @@ func _on_PhyloGeny_bubble_finished(dialogue : String):
 func _on_Achievements_achievement(achievement_name : String):
 	match achievement_name:
 		"tectonik":
+			print("tectonik")
 			$PhyloGeny.StartDialog("tectonik", 3)
 		"kangaroo":
+			print("kangaroo")
 			$PhyloGeny.StartDialog("kangaroo", 3)
 		"matchmaker":
+			print("matchmaker")
 			$PhyloGeny.StartDialog("matchmaker", 2)
 		"bucket":
+			print("bucket")
 			$PhyloGeny.StartDialog("bucket", 8)
 #		"okbiomer":
 #			$PhyloGeny.StartDialog("okbiomer", 4)

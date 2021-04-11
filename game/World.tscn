@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://game/World.gd" type="Script" id=1]
 [ext_resource path="res://modules/simulation/Simulation.tscn" type="PackedScene" id=2]
 [ext_resource path="res://modules/selecter/Selecter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://game/assets/sounds/ambiance/ambiance.ogg" type="AudioStream" id=4]
-[ext_resource path="res://game/assets/phyllo/scene/Phyllo.tscn" type="PackedScene" id=5]
 
 [node name="World" type="Spatial"]
 script = ExtResource( 1 )
@@ -18,9 +17,6 @@ transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 13 )
 
 [node name="Selecter" parent="Pivot/Camera" instance=ExtResource( 3 )]
-
-[node name="Pyllo" parent="Pivot/Camera" instance=ExtResource( 5 )]
-transform = Transform( 0.176843, 0, -0.0934163, 0, 0.2, 0, 0.0934163, 0, 0.176843, 3, -2.5, -4 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( -0.801421, 0, 0.598101, 0.416638, 0.717458, 0.558271, -0.429112, 0.696602, -0.574986, 0.971253, 3.60657, -4.57255 )

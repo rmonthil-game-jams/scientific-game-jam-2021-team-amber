@@ -67,7 +67,7 @@ func _process(delta):
 			if simulation_state[i][j].type == "tree" : 
 				numberOfTrees += 1 
 	if totalContinentArea >0 :
-		if (numberOfTrees/totalContinentArea)*100 <= thresholdMatchmaker && not onceMatchmaker:
+		if (numberOfTrees/totalContinentArea)*100 <= thresholdMatchmaker && not onceMatchmaker && simulation_core.isAllSet :
 			emit_signal("achievement", "matchmaker")
 			onceMatchmaker = true
 	if numberOfContinent >1 && not onceTectonik :
