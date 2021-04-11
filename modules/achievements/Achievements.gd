@@ -1,6 +1,6 @@
 extends Node
 
-signal world_event(event_name) # achievement
+signal achievement(achievement_name) # achievement
 
 export(NodePath) var WORLD_PATH : NodePath
 var cellMap = []
@@ -26,7 +26,7 @@ func _ready():
 
 func _process(delta):
 	var simulation_state : Array = simulation_core.state.duplicate()
-	# TODO
+	# continent detection
 	for i in range(width):
 		for j in range(height):
 			if cellMap[i][j] < 0:
@@ -40,7 +40,10 @@ func _process(delta):
 	for key in continents.keys():
 		if continents[key] <=1 : 
 			continents.erase(key)
-	
+	# achievements detection
+	## Tectonik Master
+	for continent in continents:
+		var size : int = continents[continent]
 	print(continents)
 	continents.clear()
 

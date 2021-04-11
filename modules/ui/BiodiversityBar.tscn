@@ -91,7 +91,7 @@ __meta__ = {
 
 [node name="Bonus" type="HBoxContainer" parent="Container"]
 margin_left = 104.0
-margin_right = 376.0
+margin_right = 104.0
 margin_bottom = 64.0
 rect_pivot_offset = Vector2( 32, 32 )
 custom_constants/separation = 40
