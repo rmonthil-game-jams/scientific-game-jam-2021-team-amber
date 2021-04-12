@@ -15,6 +15,8 @@ export(Array, float) var bonus_thresholds
 onready var sim_step : Node = get_node("../World/Simulation/SimulationCore")
 
 var value : float = 1.0 setget _set_value
+var hasWin : bool = false
+var hasLost : bool = false
 
 func _set_value(val : float):
 	value = val
@@ -23,24 +25,27 @@ func _set_value(val : float):
 	for i in range(bonus_thresholds.size()):
 		## discover the buttons given the progress bar
 		if value >= bonus_thresholds[i]:
-			if not unlockToolOnce :
-				emit_signal("achievement", "bucket")
-				unlockToolOnce = true
 			$Bonus.get_child(i).show()
 			$Bonus.get_child(i).disabled = false
 			emit_signal("bonus", $Bonus.get_child(i).name.to_lower())
+	if value >= bonus_thresholds[2]:
+		if not unlockToolOnce:
+			emit_signal("achievement", "bucket")
+			unlockToolOnce = true
 	## over
-	if value >= 40 && not newSpeciesOnce:
+	if value >= 30 && not newSpeciesOnce:
 		emit_signal("achievement","newspecies")
 		newSpeciesOnce = true
-	if value <= 60 && sim_step.numberOfSteps > 60 && not slowMotionOnce:
+	if value <= 50 && sim_step.numberOfSteps > 60 && not slowMotionOnce:
 		emit_signal("achievement", "slowmotion")
 		slowMotionOnce = true
 	if value > 100.0:
-		if visible:
+		if $Bonus.visible and not hasWin and not hasLost:
+			hasWin = true
 			emit_signal("win")
 	elif value == 0.0:
-		if visible:
+		if $Bonus.visible and not hasWin and not hasLost:
+			hasLost = true
 			emit_signal("loss")
 		
 func _reset_bonus_rotation():

@@ -94,6 +94,7 @@ __meta__ = {
 }
 
 [node name="Bonus" type="HBoxContainer" parent="."]
+visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 142.984

@@ -136,7 +136,7 @@ func _spawn_tree(species : Vector3, biome : String):
 			current_ground.get_node("Trees").add_child(new_tree)
 			# translation
 			new_tree.translation += Vector3(rand_range(-0.3, 0.3), 0.0, rand_range(-0.3, 0.3))
-			new_tree.translation.y += 0.25
+			new_tree.translation.y += 0.5
 			new_tree.scale = Vector3(0.01, 0.01, 0.01)
 			new_tree.rotation.y = rand_range(0.0, 2.0 * PI)
 			$TweenTrees.interpolate_property(new_tree, "scale", Vector3(0.01, 0.01, 0.01), Vector3(1.0, 1.0, 1.0), 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT, 0.5)
@@ -150,7 +150,10 @@ func _clear_tree():
 		is_trees_clearing = true
 		# build tween
 		for tree in current_ground.get_node("Trees").get_children():
-			$TweenTrees.interpolate_property(tree, "scale", Vector3(1.0, 1.0, 1.0), Vector3(0.01, 0.01, 0.01), 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			var target_rotation : Vector3 = tree.rotation_degrees
+			target_rotation.x = -90
+			$TweenTrees.interpolate_property(tree, "rotation_degrees", tree.rotation_degrees, target_rotation, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			$TweenTrees.interpolate_property(tree, "scale", Vector3(1.0, 1.0, 1.0), Vector3(0.01, 1.0, 0.01), 0.25, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT, 0.25)
 		$TweenTrees.start()
 		# clear
 		$TimerClearTrees.start()

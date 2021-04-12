@@ -12,6 +12,8 @@ var currentDialogNumber = -1
 var currentDialogState : String
 var totalStateNumber = -1
 
+var dialogQueue : Array = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = false
@@ -22,20 +24,13 @@ func _input(event):
 			pass
 
 func StartDialog(dialogue : String, number : int):
-	$AudioStreamPlayer.play()
-	visible = true
-	currentDialogState = dialogue
-	totalStateNumber = number
-	currentDialogNumber = 1
-	Text.text = dialogs[currentDialogState+ str(currentDialogNumber)]
-	Text.set_visible_characters(0)
-	currentDialogNumber += 1
-	emit_signal("started", dialogue)
-	$TimerVoice.start()
-	_on_TimerVoice_timeout()
+	if not dialogQueue:
+		dialogQueue.append({"dialogue":dialogue, "number":number})
+		_on_TimerQueue_timeout()
+	else:
+		dialogQueue.append({"dialogue":dialogue, "number":number})
 
 func NextDialogue():
-	$AudioStreamPlayer.play()
 	Text.text = dialogs[currentDialogState+ str(currentDialogNumber)]
 	Text.set_visible_characters(0)
 	currentDialogNumber += 1
@@ -61,9 +56,29 @@ func _on_TextureButton_pressed():
 			emit_signal("finished", currentDialogState)
 			visible = false
 			$TimerVoice.stop()
+			dialogQueue.pop_front()
+			if dialogQueue:
+				$TimerQueue.start()
 	else :
 		Text.set_visible_characters(Text.get_total_character_count())
 
 func _on_TimerVoice_timeout():
 	var i = randi() % 6
 	get_node("Voice" + str(i)).play()
+
+func _on_TimerQueue_timeout():
+	# extract
+	var dialogue : String = dialogQueue.front()["dialogue"]
+	var number : int = dialogQueue.front()["number"]
+	# start
+	$AudioStreamPlayer.play()
+	visible = true
+	currentDialogState = dialogue
+	totalStateNumber = number
+	currentDialogNumber = 1
+	Text.text = dialogs[currentDialogState+ str(currentDialogNumber)]
+	Text.set_visible_characters(0)
+	currentDialogNumber += 1
+	emit_signal("started", dialogue)
+	$TimerVoice.start()
+	_on_TimerVoice_timeout()

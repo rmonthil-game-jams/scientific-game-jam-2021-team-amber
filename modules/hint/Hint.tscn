@@ -14,11 +14,13 @@ __meta__ = {
 
 [node name="TextureButton" type="TextureButton" parent="."]
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-margin_left = -83.0
-margin_top = 21.0
-margin_right = -19.0
-margin_bottom = 85.0
+anchor_bottom = 1.0
+margin_left = -127.98
+margin_top = -129.103
+margin_right = -63.9802
+margin_bottom = -65.1028
 texture_normal = ExtResource( 1 )
 expand = true
 __meta__ = {

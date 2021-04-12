@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://game/Game.gd" type="Script" id=1]
 [ext_resource path="res://game/World.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://modules/achievements/Achievements.tscn" type="PackedScene" id=7]
 [ext_resource path="res://game/assets/music/Musicv2.ogg" type="AudioStream" id=8]
 [ext_resource path="res://modules/hint/Hint.tscn" type="PackedScene" id=9]
+[ext_resource path="res://game/assets/ui/Bonton_X.png" type="Texture" id=10]
+[ext_resource path="res://game/assets/sounds/new_ui/UI_tree.ogg" type="AudioStream" id=11]
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
@@ -26,7 +28,7 @@ visible = false
 
 [node name="BiodiversityProgress" parent="." instance=ExtResource( 4 )]
 visible = false
-bonus_thresholds = [ 0.0, 0.0, 20.0 ]
+bonus_thresholds = [ 0.0, 0.0, 40.0 ]
 
 [node name="PhyloGeny" parent="." instance=ExtResource( 5 )]
 dialogs = {
@@ -34,7 +36,7 @@ dialogs = {
 "bucket1": "Oh WOW the awesome Phylometer is getting crazy ! Did you really do this ?",
 "bucket2": "Hum… nope. Not impressed. I could have done the same, okay ??",
 "bucket3": "… Yeah I guess I’m a little impressed but don’t make me say it louder.",
-"bucket4": "Makes me think, there’s a trick I forgot to tell you about. If you use these paintbrushes, you can change the climate.",
+"bucket4": "Makes me think, there’s a trick I forgot to tell you about. If you use these shovels, you can change the climate.",
 "bucket5": "By doing so, you will create biomes. A biome is a large area characterized by its vegetation, soil, climate, and wildlife.",
 "bucket6": "Forest biomes are distributed around the world depending on trees adaptation to temperature and rainfall.",
 "bucket7": "For example, tropical rainforests are mainly found in warm and humid climates. Try creating different types of biomes in this new world !",
@@ -114,6 +116,21 @@ volume_db = -8.5
 autoplay = true
 
 [node name="Hint" parent="." instance=ExtResource( 9 )]
+visible = false
+
+[node name="QuitButton" type="TextureButton" parent="."]
+margin_left = 935.444
+margin_top = 23.1634
+margin_right = 999.444
+margin_bottom = 87.1634
+texture_normal = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
 [connection signal="achievement" from="World" to="." method="_on_World_achievement"]
 [connection signal="achievement" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_achievement"]
 [connection signal="loss" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_loss"]
@@ -122,6 +139,7 @@ autoplay = true
 [connection signal="bubble_finished" from="PhyloGeny" to="." method="_on_PhyloGeny_bubble_finished"]
 [connection signal="finished" from="PhyloGeny" to="." method="_on_PhyloGeny_finished"]
 [connection signal="started" from="PhyloGeny" to="." method="_on_PhyloGeny_started"]
-[connection signal="started" from="MainMenu" to="PhyloGeny" method="_on_MainMenu_started"]
 [connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]
+[connection signal="started" from="MainMenu" to="PhyloGeny" method="_on_MainMenu_started"]
 [connection signal="achievement" from="Achievements" to="." method="_on_Achievements_achievement"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]

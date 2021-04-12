@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://game/World.gd" type="Script" id=1]
 [ext_resource path="res://modules/simulation/Simulation.tscn" type="PackedScene" id=2]
 [ext_resource path="res://modules/selecter/Selecter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://game/assets/sounds/ambiance/ambiance.ogg" type="AudioStream" id=4]
 [ext_resource path="res://game/assets/phyllo/scene/Phyllo.tscn" type="PackedScene" id=5]
+[ext_resource path="res://game/assets/sounds/new_feedback/Create_RockIn.ogg" type="AudioStream" id=6]
+[ext_resource path="res://game/assets/sounds/new_feedback/Create_RockLoop.ogg" type="AudioStream" id=7]
+[ext_resource path="res://game/assets/sounds/new_feedback/Create_waterIn.ogg" type="AudioStream" id=8]
+[ext_resource path="res://game/assets/sounds/new_feedback/Create_waterLoop.ogg" type="AudioStream" id=9]
 
 [node name="World" type="Spatial"]
 script = ExtResource( 1 )
@@ -28,7 +32,25 @@ shadow_enabled = true
 
 [node name="Ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -3.5
+volume_db = -5.5
 autoplay = true
+
+[node name="StartRock" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="LoopRock" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = 3.0
+
+[node name="StartWater" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="LoopWater" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -3.0
+[connection signal="down" from="Pivot/Camera/Selecter" to="." method="_on_Selecter_down"]
 [connection signal="preselected" from="Pivot/Camera/Selecter" to="." method="_on_Selecter_preselected"]
 [connection signal="selected" from="Pivot/Camera/Selecter" to="." method="_on_Selecter_selected"]
+[connection signal="up" from="Pivot/Camera/Selecter" to="." method="_on_Selecter_up"]
+[connection signal="finished" from="StartRock" to="." method="_on_StartRock_finished"]
+[connection signal="finished" from="StartWater" to="." method="_on_StartWater_finished"]
