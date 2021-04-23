@@ -29,6 +29,9 @@ onready var state : Array = []
 
 # init
 
+func stop():
+	$Timer.stop()
+
 func create_empty_state() -> Array:
 	var matrix : Array = []
 	for i in range(WIDTH):
@@ -48,42 +51,6 @@ func create_init_state() -> Array:
 			matrix[i].append({"type":"tree", "species":Vector3(rand_range(0.4,0.7),rand_range(0.7,1), rand_range(0.2,0.4)).normalized(), "biome":"temperate"})
 	isAllSet = true
 	return matrix
-
-func get_diversity() -> float:
-	if state:
-		# average
-		var n_trees : int = 0
-		var average : Array = [0.0, 0.0, 0.0]
-		for i in range(WIDTH):
-			for j in range(HEIGHT):
-				if state[i][j]["type"] == "tree":
-					for k in range(3):
-						average[k] += state[i][j]["species"][k]
-					n_trees += 1
-		if n_trees > 0:
-			for k in range(3):
-				average[k] /= n_trees
-			# deviation
-			var variance : Array = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-			for i in range(WIDTH):
-				for j in range(HEIGHT):
-					if state[i][j]["type"] == "tree":
-						for ki in range(3):
-							for kj in range(3):
-								variance[ki + 3 * kj] += (state[i][j]["species"][ki] - average[ki]) * (state[i][j]["species"][kj] - average[kj])
-			var deviation : Array = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-			for k in range(9):
-				variance[k] = variance[k] / n_trees
-				deviation[k] = sqrt(abs(variance[k]))
-			# diversity
-			var diversity : float = 0.0
-			for k in range(0, 9):
-				diversity += deviation[k]
-			return diversity / 9
-		else:
-			return 0.0
-	else:
-		return 0.0
 
 # process
 

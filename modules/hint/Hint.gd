@@ -2,7 +2,7 @@ extends Control
 
 onready var core : Node = get_node("../World/Simulation/SimulationCore")
 onready var achievements : Node = get_node("../Achievements")
-onready var bioDiv : Node = get_node("../BiodiversityProgress")
+onready var bioDiv : Node = get_node("../Bonus")
 onready var Genie : Node = get_node("../PhyloGeny")
 
 func _on_TextureButton_pressed():
@@ -12,7 +12,7 @@ func _on_TextureButton_pressed():
 	elif  not achievements.onceIsland :
 		Genie.StartDialog("hint_kangaroo", 1)
 	# from Biodiversitybar script
-	elif  not bioDiv.newSpeciesOnce :
+	elif not bioDiv.newSpeciesOnce :
 		Genie.StartDialog("hint_newspecies", 1)
 	elif not get_node("../World").sandmanOnce :
 		Genie.StartDialog("hint_sandman", 1)

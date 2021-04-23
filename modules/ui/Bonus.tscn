@@ -1,13 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://modules/ui/BiodiversityBar.gd" type="Script" id=1]
-[ext_resource path="res://game/assets/ui/BarreProgress.png" type="Texture" id=2]
+[ext_resource path="res://modules/ui/Bonus.gd" type="Script" id=1]
 [ext_resource path="res://game/assets/ui/BontonPelleWater.png" type="Texture" id=3]
 [ext_resource path="res://game/assets/ui/BontonPelleNormal.png" type="Texture" id=4]
 [ext_resource path="res://game/assets/ui/BontonPelleSable.png" type="Texture" id=5]
 [ext_resource path="res://game/assets/sounds/new_ui/UI_Brush-002.ogg" type="AudioStream" id=6]
-[ext_resource path="res://game/assets/ui/BarreProgressFront.png" type="Texture" id=7]
-[ext_resource path="res://game/assets/font/lightout.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://game/assets/sounds/new_ui/UI_Brush-001.ogg" type="AudioStream" id=9]
 [ext_resource path="res://game/assets/sounds/new_ui/UI_Brush-003.ogg" type="AudioStream" id=10]
 
@@ -58,11 +55,7 @@ tracks/0/keys = {
 "values": [ 0.0, -20.0, 20.0 ]
 }
 
-[sub_resource type="DynamicFont" id=4]
-size = 40
-font_data = ExtResource( 8 )
-
-[node name="BiodiversityBar" type="Control"]
+[node name="Bonus" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -78,29 +71,12 @@ anims/paint_hot = SubResource( 1 )
 anims/paint_temperate = SubResource( 2 )
 anims/paint_water = SubResource( 3 )
 
-[node name="TextureProgress" type="TextureProgress" parent="."]
-anchor_bottom = 1.0
-margin_left = 19.0
-margin_top = 15.0
-margin_right = 94.0
-margin_bottom = -18.0
-value = 100.0
-texture_under = ExtResource( 2 )
-texture_progress = ExtResource( 7 )
-fill_mode = 3
-nine_patch_stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Bonus" type="HBoxContainer" parent="."]
 visible = false
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 142.984
-margin_top = -86.4746
-margin_right = 206.984
-margin_bottom = -22.4746
+margin_left = 142.544
+margin_top = 90.8717
+margin_right = 482.544
+margin_bottom = 240.872
 rect_scale = Vector2( 1, -1 )
 rect_pivot_offset = Vector2( 32, 32 )
 custom_constants/separation = 40
@@ -147,17 +123,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-margin_left = 110.998
-margin_top = 29.4314
-margin_right = 508.998
-margin_bottom = 73.4314
-custom_fonts/font = SubResource( 4 )
-text = "The awesome Phylometer"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Brush1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 
@@ -166,6 +131,7 @@ stream = ExtResource( 6 )
 
 [node name="Brush3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
+
 [connection signal="pressed" from="Bonus/PaintWater" to="." method="_on_PaintWater_pressed"]
 [connection signal="pressed" from="Bonus/PaintTemperate" to="." method="_on_PaintTemperate_pressed"]
 [connection signal="pressed" from="Bonus/PaintHot" to="." method="_on_PaintHot_pressed"]

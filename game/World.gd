@@ -5,11 +5,6 @@ signal achievement(achievement_name)
 var current_tool : String = "shovel"
 var sandmanOnce : bool = false
 
-# interface
-
-func restart():
-	pass
-
 # internal
 
 func _process(delta : float):

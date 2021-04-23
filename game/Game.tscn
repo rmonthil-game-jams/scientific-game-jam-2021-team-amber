@@ -3,7 +3,7 @@
 [ext_resource path="res://game/Game.gd" type="Script" id=1]
 [ext_resource path="res://game/World.tscn" type="PackedScene" id=2]
 [ext_resource path="res://modules/ui/GameTitle.tscn" type="PackedScene" id=3]
-[ext_resource path="res://modules/ui/BiodiversityBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://modules/ui/Bonus.tscn" type="PackedScene" id=4]
 [ext_resource path="res://modules/ui/GenieDialog.tscn" type="PackedScene" id=5]
 [ext_resource path="res://modules/ui/CreditScene.tscn" type="PackedScene" id=6]
 [ext_resource path="res://modules/achievements/Achievements.tscn" type="PackedScene" id=7]
@@ -26,9 +26,8 @@ __meta__ = {
 [node name="CreditScene" parent="." instance=ExtResource( 6 )]
 visible = false
 
-[node name="BiodiversityProgress" parent="." instance=ExtResource( 4 )]
-visible = false
-bonus_thresholds = [ 0.0, 0.0, 40.0 ]
+[node name="Bonus" parent="." instance=ExtResource( 4 )]
+bonus_thresholds = [ 0.0, 0.0, 0.4 ]
 
 [node name="PhyloGeny" parent="." instance=ExtResource( 5 )]
 dialogs = {
@@ -131,15 +130,16 @@ __meta__ = {
 
 [node name="Win" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+
 [connection signal="achievement" from="World" to="." method="_on_World_achievement"]
-[connection signal="achievement" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_achievement"]
-[connection signal="loss" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_loss"]
-[connection signal="tool_selected" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_tool_selected"]
-[connection signal="win" from="BiodiversityProgress" to="." method="_on_BiodiversityProgress_win"]
+[connection signal="achievement" from="Bonus" to="." method="_on_BiodiversityProgress_achievement"]
+[connection signal="loss" from="Bonus" to="." method="_on_BiodiversityProgress_loss"]
+[connection signal="tool_selected" from="Bonus" to="." method="_on_BiodiversityProgress_tool_selected"]
+[connection signal="win" from="Bonus" to="." method="_on_BiodiversityProgress_win"]
 [connection signal="bubble_finished" from="PhyloGeny" to="." method="_on_PhyloGeny_bubble_finished"]
 [connection signal="finished" from="PhyloGeny" to="." method="_on_PhyloGeny_finished"]
 [connection signal="started" from="PhyloGeny" to="." method="_on_PhyloGeny_started"]
-[connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]
 [connection signal="started" from="MainMenu" to="PhyloGeny" method="_on_MainMenu_started"]
+[connection signal="started" from="MainMenu" to="." method="_on_MainMenu_started"]
 [connection signal="achievement" from="Achievements" to="." method="_on_Achievements_achievement"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]

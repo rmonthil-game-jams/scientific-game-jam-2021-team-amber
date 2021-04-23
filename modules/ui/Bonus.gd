@@ -14,14 +14,13 @@ var unlockToolOnce = false
 export(Array, float) var bonus_thresholds
 onready var sim_step : Node = get_node("../World/Simulation/SimulationCore")
 
-var value : float = 1.0 setget _set_value
+var value : float = 0.0 setget _set_value
 var hasWin : bool = false
 var hasLost : bool = false
 
 func _set_value(val : float):
 	value = val
 	## update
-	$TextureProgress.value = value
 	for i in range(bonus_thresholds.size()):
 		## discover the buttons given the progress bar
 		if value >= bonus_thresholds[i]:
@@ -33,13 +32,13 @@ func _set_value(val : float):
 			emit_signal("achievement", "bucket")
 			unlockToolOnce = true
 	## over
-	if value >= 30 && not newSpeciesOnce:
+	if value >= 0.2 && not newSpeciesOnce:
 		emit_signal("achievement","newspecies")
 		newSpeciesOnce = true
-	if value <= 50 && sim_step.numberOfSteps > 60 && not slowMotionOnce:
+	if value <= 0.5 && sim_step.numberOfSteps > 60 && not slowMotionOnce:
 		emit_signal("achievement", "slowmotion")
 		slowMotionOnce = true
-	if value > 100.0:
+	if value >= 1.0:
 		if $Bonus.visible and not hasWin and not hasLost:
 			hasWin = true
 			emit_signal("win")

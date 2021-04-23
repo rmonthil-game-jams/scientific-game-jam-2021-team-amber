@@ -1,5 +1,8 @@
 extends Spatial
 
+func stop():
+	$SimulationCore.stop()
+
 func paint(i : int, j : int, biome : String) -> void:
 	if biome == "water":
 		$SimulationCore.state[i][j].erase("biome")
@@ -10,9 +13,6 @@ func paint(i : int, j : int, biome : String) -> void:
 			$SimulationCore.state[i][j]["type"] = "land"
 		$SimulationCore.state[i][j]["biome"] = biome
 	$SimulationVisual.cells[i][j].state = $SimulationCore.state[i][j].duplicate()
-
-func get_diversity() -> float:
-	return $SimulationCore.get_diversity()
 
 func clear() -> void:
 	for i in range($SimulationCore.WIDTH):
@@ -29,7 +29,6 @@ func set_empty_state() -> void:
 	$SimulationVisual.generate_from_state($SimulationCore.state)
 
 func set_init_state() -> void:
-	$SimulationCore.MUTATION_INTENSITY = 0.35
 	$SimulationCore.GLOBAL_PROBABILITY_OF_DEATH = 0.2
 	$SimulationCore.state = $SimulationCore.create_init_state()
 	$SimulationVisual.generate_from_state($SimulationCore.state)

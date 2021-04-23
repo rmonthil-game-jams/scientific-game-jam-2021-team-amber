@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://game/World.gd" type="Script" id=1]
 [ext_resource path="res://modules/simulation/Simulation.tscn" type="PackedScene" id=2]
@@ -9,11 +9,15 @@
 [ext_resource path="res://game/assets/sounds/new_feedback/Create_RockLoop.ogg" type="AudioStream" id=7]
 [ext_resource path="res://game/assets/sounds/new_feedback/Create_waterIn.ogg" type="AudioStream" id=8]
 [ext_resource path="res://game/assets/sounds/new_feedback/Create_waterLoop.ogg" type="AudioStream" id=9]
+[ext_resource path="res://modules/diversity/DiversityProgress.tscn" type="PackedScene" id=10]
 
 [node name="World" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="Simulation" parent="." instance=ExtResource( 2 )]
+
+[node name="DiversityProgress" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 0 )
 
 [node name="Pivot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0 )
@@ -48,6 +52,7 @@ stream = ExtResource( 8 )
 [node name="LoopWater" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 volume_db = -3.0
+
 [connection signal="down" from="Pivot/Camera/Selecter" to="." method="_on_Selecter_down"]
 [connection signal="preselected" from="Pivot/Camera/Selecter" to="." method="_on_Selecter_preselected"]
 [connection signal="selected" from="Pivot/Camera/Selecter" to="." method="_on_Selecter_selected"]

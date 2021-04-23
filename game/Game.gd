@@ -7,31 +7,30 @@ func _on_MainMenu_started():
 	$World/Pivot/Camera/Pyllo.angry()
 
 func _process(delta):
-	$BiodiversityProgress.value = 370.0 * $World/Simulation.get_diversity()
+	$Bonus.value = $World/DiversityProgress.get_diversity()
 	$PhyloGeny.global_position = $World/Pivot/Camera.unproject_position($World/Pivot/Camera/Pyllo.global_transform.origin)
 
 func _on_BiodiversityProgress_tool_selected(tool_name):
 	$World.current_tool = tool_name
 
-var current_tool : String = ""
 func _on_PhyloGeny_started(dialogue : String):
-	current_tool = $World.current_tool
-	$World.current_tool = ""
-	$BiodiversityProgress/Bonus.hide()
+	pass
 
 func _on_PhyloGeny_finished(dialogue : String):
-	$World.current_tool = current_tool
-	$BiodiversityProgress/Bonus.show()
 	$World/Pivot/Camera/Pyllo.idle()
 	match dialogue:
 		"win":
 			$CreditScene.show()
 			$Hint.hide()
 			$Win.play()
+			$Bonus.hide()
+			$World/Simulation.stop()
 		"gameover":
 			$CreditScene.show()
 			$Hint.hide()
 			$Win.play()
+			$Bonus.hide()
+			$World/Simulation.stop()
 
 func _on_PhyloGeny_bubble_finished(dialogue : String):
 	match dialogue:
@@ -40,13 +39,11 @@ func _on_PhyloGeny_bubble_finished(dialogue : String):
 			$World/Pivot/Camera/Pyllo.speak()
 		"intro6":
 			$World/Simulation.set_init_state()
-		"intro8":
-			$BiodiversityProgress.show()
-			$BiodiversityProgress/Bonus.hide()
 		"intro13":
-			$BiodiversityProgress/Bonus.show()
+			$Bonus/Bonus.show()
 		"intro15":
 			$Hint.show()
+			$World/Simulation/SimulationCore.MUTATION_INTENSITY = 0.35
 
 func _on_Achievements_achievement(achievement_name : String):
 	match achievement_name:
